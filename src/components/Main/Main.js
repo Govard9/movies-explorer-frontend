@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import HeadInfo from "./HeadInfo/HeadInfo";
 import Promo from "./Promo/Promo";
 import Techs from "./Techs/Techs";
+import AboutMe from "./AboutMe/AboutMe";
 
 function Main(props) {
     return (
@@ -11,6 +12,7 @@ function Main(props) {
             <HeadInfo />
             <Promo />
             <Techs />
+            <AboutMe />
         </>
     );
 }

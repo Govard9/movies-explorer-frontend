@@ -27,3 +27,6 @@
 
 /* Technologies */
 @import url(./components/Main/Techs/Techs.css);
+
+/* AboutMe */
+@import url(./components/Main/AboutMe/AboutMe.css);
