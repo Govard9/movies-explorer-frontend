@@ -24,3 +24,6 @@
 
 /* Promo */
 @import url(./components/Main/Promo/Promo.css);
+
+/* Technologies */
+@import url(./components/Main/Techs/Techs.css);

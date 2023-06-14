@@ -2,6 +2,7 @@ import React from 'react';
 import Header from "../Header/Header";
 import HeadInfo from "./HeadInfo/HeadInfo";
 import Promo from "./Promo/Promo";
+import Techs from "./Techs/Techs";
 
 function Main(props) {
     return (
@@ -9,6 +10,7 @@ function Main(props) {
             <Header />
             <HeadInfo />
             <Promo />
+            <Techs />
         </>
     );
 }

@@ -3,7 +3,7 @@ import image_planet from '../../../images/icon/header-info__image-planet.svg';
 
 function HeadInfo(props) {
     return (
-        <section className="header-info">
+        <section className="header-info" aria-label="Информация о проекте">
             <div className="header-info__left-side">
                 <h1 className="header-info__main-text">
                     Учебный&nbsp;проект&nbsp;студента факультета

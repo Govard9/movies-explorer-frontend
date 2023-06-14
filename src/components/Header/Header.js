@@ -4,7 +4,7 @@ import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
     return (
-        <header className="header">
+        <header className="header" aria-label="Шапка сайта">
             <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo"/>
             <Navigation />
         </header>

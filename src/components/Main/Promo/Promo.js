@@ -2,7 +2,7 @@ import React from 'react';
 
 function Promo(props) {
     return (
-        <section className="promo">
+        <section className="promo" aria-label="Секция о проекте">
             <h2 className="promo__main-title">О проекте</h2>
             <div className="promo__line"></div>
             <ul className="promo__text-block">
