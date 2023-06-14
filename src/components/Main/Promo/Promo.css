@@ -1,0 +1,140 @@
+.promo {
+    max-width: 1280px;
+    background: #202020;
+    margin: 0 auto;
+}
+
+/* О проекте */
+.promo__main-title {
+    padding: 110px 0 0 70px;
+    margin: 0;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+/* Линия */
+.promo__line {
+    max-width: 1140px;
+    height: 1px;
+    background: #DADADA;
+    margin: 23px auto 0 auto;
+}
+
+/* Блок с текстами */
+.promo__text-block {
+    display: flex;
+    margin: 70px 0 0 70px;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Левый блок */
+.promo__left-block {
+    max-width: 550px;
+}
+
+/* Правый блок */
+.promo__right-block {
+    max-width: 550px;
+}
+
+/* h3 теста блоков */
+.promo__title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+/* Описание в блоках */
+.promo__description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+/* Блок зеленой и серой полосы */
+.promo__block-two-bands {
+    display: flex;
+}
+
+/* Зеленая полоса */
+.promo__block-band-left {
+    margin: 110px 0 0 70px;
+    width: 23%;
+}
+
+.promo__block-band-green {
+    height: 36px;
+    background: #3DDC84;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Текст в зеленой полосе */
+.promo__one-week {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+/* Текст Back-end */
+.promo__text-backend {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 14px 0 110px 0;
+    color: #8B8B8B;
+}
+
+/* Правый блок полосы */
+.promo__block-band-right {
+    margin: 110px 0 0 0;
+    width: 100%;
+}
+
+/* Серая полоса */
+.promo__block-band-grey {
+    max-width: 913px;
+    height: 36px;
+    background: #303030;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Текст серой полосы */
+.promo__four-weeks {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+/* Текст фронтенд */
+.promo__text-frontend {
+    max-width: 913px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 14px 0 110px 0;
+    color: #8B8B8B;
+}

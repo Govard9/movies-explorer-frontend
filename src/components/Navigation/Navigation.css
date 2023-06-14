@@ -1,0 +1,30 @@
+.nav-menu {
+    margin: auto 70px auto 0;
+}
+
+.nav-menu__links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-menu__link {
+    margin: auto 0;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+.nav-menu__button {
+    padding: 8px 20px;
+    background: #3DDC84;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+    cursor: pointer;
+}

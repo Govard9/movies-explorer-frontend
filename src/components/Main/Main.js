@@ -1,8 +1,15 @@
 import React from 'react';
+import Header from "../Header/Header";
+import HeadInfo from "./HeadInfo/HeadInfo";
+import Promo from "./Promo/Promo";
 
 function Main(props) {
     return (
-        <div></div>
+        <>
+            <Header />
+            <HeadInfo />
+            <Promo />
+        </>
     );
 }
 
