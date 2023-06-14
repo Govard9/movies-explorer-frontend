@@ -30,3 +30,6 @@
 
 /* AboutMe */
 @import url(./components/Main/AboutMe/AboutMe.css);
+
+/* Portfolio */
+@import url(./components/Main/Portfolio/Portfolio.css);

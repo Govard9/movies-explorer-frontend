@@ -1,0 +1,63 @@
+/* Секция */
+.portfolio {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: #202020;
+}
+
+/* Title */
+.portfolio__title {
+    margin: 0 0 30px 70px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+    color: #8B8B8B;
+    mix-blend-mode: normal;
+}
+
+/* Гланвый блок */
+.portfolio__blocks {
+    max-width: 1140px;
+    margin: 0 0 0 70px;
+    padding: 0;
+}
+
+.portfolio__block {
+    list-style-type: none;
+}
+
+.portfolio__block {
+    margin: 20px 0 0 0;
+}
+
+.portfolio__block-info {
+
+}
+
+.portfolio__block-info:last-child {
+    padding-bottom: 125px;
+}
+
+/* Ссылка */
+.portfolio__link {
+    display: flex;
+    justify-content: space-between;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* Линия мод. */
+.promo__line_new-color {
+    background: #424242;
+}
+
+/* Иконка */
+.portfolio__icon {
+
+}
