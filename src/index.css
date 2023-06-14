@@ -33,3 +33,6 @@
 
 /* Portfolio */
 @import url(./components/Main/Portfolio/Portfolio.css);
+
+/* Footer */
+@import url(./components/Footer/Footer.css);

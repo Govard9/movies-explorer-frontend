@@ -1,0 +1,55 @@
+/* Секция */
+.footer {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: #202020;
+}
+
+/* Текст в футоре */
+.footer__copy-text {
+    padding: 79px 0 0 0;
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: #8B8B8B;
+}
+
+/* Блок с нижней частью */
+.footer__blocks-info {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Копирайт дата */
+.footer__copy-data {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+/* Блок с ссылками */
+.footer__block-menu {
+    list-style-type: none;
+}
+
+.footer__links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer__link {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: right;
+    color: #FFFFFF;
+}

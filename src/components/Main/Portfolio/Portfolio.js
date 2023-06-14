@@ -3,7 +3,7 @@ import portfolio__icon from '../../../images/icon/portfolio__icon.svg';
 
 function Portfolio(props) {
     return (
-        <section className="portfolio">
+        <section className="portfolio" aria-label="Секция портфолио">
             <h4 className="portfolio__title">Портфолио</h4>
             <ul className="portfolio__blocks">
                 <li className="portfolio__block">

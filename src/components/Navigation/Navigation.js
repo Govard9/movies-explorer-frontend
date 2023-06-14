@@ -2,7 +2,7 @@ import React from 'react';
 
 function Navigation(props) {
     return (
-        <nav className="nav-menu">
+        <nav className="nav-menu" aria-label="Меню">
             <ul className="nav-menu__list">
                 <li className="nav-menu__links">
                     <a href="#" className="nav-menu__link">Регистрация</a>
