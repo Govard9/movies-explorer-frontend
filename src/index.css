@@ -36,3 +36,21 @@
 
 /* Footer */
 @import url(./components/Footer/Footer.css);
+
+/* SearchForm */
+@import url(./components/Movies/SearchForm/SearchForm.css);
+
+/* FilterCheckbox */
+@import url(./components/Movies/SearchForm/FilterCheckbox/FilterCheckbox.css);
+
+/* Preloader */
+@import url(./components/Movies/Preloader/Preloader.css);
+
+/* Cards */
+@import url(./components/Movies/MoviesCardList/MoviesCardList.css);
+
+/* Card */
+@import url(./components/Movies/MoviesCard/MoviesCard.css);
+
+/* Profile */
+@import url(./components/Profile/Profile.css);

@@ -1,0 +1,73 @@
+.profile {
+    height: 100vh;
+    margin: 0 auto;
+    background: #202020;
+}
+
+.profile__title {
+    margin: 74px 0 0 0;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.profile__block-info {
+    max-width: 410px;
+    margin: 123px auto 0 auto;
+    list-style-type: none;
+    padding: 0;
+}
+
+.profile__name {
+    display: flex;
+    justify-content: space-between;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: #FFFFFF;
+}
+
+.profile__line {
+    margin: 17px 0 19px 0;
+}
+
+.profile__text {
+    display: flex;
+    justify-content: space-between;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 13px;
+    color: #FFFFFF;
+}
+
+.profile__block-edit-out {
+    padding: 220px 0 70px 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile__link-edit-profile {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+.profile__link-logout {
+    margin-top: 16px;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #EE3465;
+}

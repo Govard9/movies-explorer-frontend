@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import header__logo from '../../images/logo/header__logo.svg';
 import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
     return (
-        <header className="header" aria-label="Шапка сайта">
+        <header className="header header_black" aria-label="Шапка сайта">
             <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo"/>
             <Navigation />
         </header>

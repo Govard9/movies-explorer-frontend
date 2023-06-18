@@ -1,0 +1,54 @@
+.card {
+    max-width: 1140px;
+    max-height: 134px;
+    background: #2F2F2F;
+    margin: 40px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card__block {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__title {
+    margin: 22px 0 0 22px;
+}
+
+.card__link {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+}
+
+.card__time {
+    margin: 13px 0 0 22px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+    color: #8B8B8B;
+}
+
+.card__saved {
+    background: url(../../../images/icon/card__saved.svg) no-repeat;
+    width: 14px;
+    height: 12px;
+    border: none;
+    margin: 30px 0 0 22px;
+    cursor: pointer;
+}
+
+.card__saved_active {
+    background: url(../../../images/icon/card__saved_active.svg) no-repeat;
+}
+
+.card__image {
+    max-width: 220px;
+    max-height: 122px;
+    margin: 6px 6px 6px 0;
+}

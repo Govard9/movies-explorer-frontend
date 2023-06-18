@@ -1,10 +1,21 @@
 .nav-menu {
+    width: 100%;
     margin: auto 70px auto 0;
+}
+
+.nav-menu__list {
+    display: flex;
+    justify-content: space-between;
 }
 
 .nav-menu__links {
     display: flex;
     gap: 30px;
+    margin-left: auto;
+}
+
+.nav-menu__links_gap {
+    gap: 16px;
 }
 
 .nav-menu__link {
@@ -17,6 +28,11 @@
     color: #FFFFFF;
 }
 
+.nav-menu__link_size {
+    font-size: 13px;
+    line-height: 18px;
+}
+
 .nav-menu__button {
     padding: 8px 20px;
     background: #3DDC84;
@@ -27,5 +43,22 @@
     font-size: 12px;
     line-height: 16px;
     color: #000000;
+    cursor: pointer;
+}
+
+/* Выход из профиля */
+
+.nav-menu__link_profile {
+    font-size: 14px;
+}
+
+.nav-menu__background-block {
+    width: 26px;
+    height: 30px;
+    background: #313131;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
