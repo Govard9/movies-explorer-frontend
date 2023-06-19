@@ -57,3 +57,9 @@
 
 /* Register */
 @import url(./components/Register/Register.css);
+
+/* Login */
+@import url(./components/Login/Login.css);
+
+/* 404 */
+@import url(./components/404/Error404.css);
