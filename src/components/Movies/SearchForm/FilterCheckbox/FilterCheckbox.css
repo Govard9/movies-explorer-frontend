@@ -37,6 +37,7 @@
     background: #EBEBEB;
     border-radius: 20px;
     transition: 0.4s;
+    cursor: pointer;
 }
 
 .toggle-switch__slider:before {
