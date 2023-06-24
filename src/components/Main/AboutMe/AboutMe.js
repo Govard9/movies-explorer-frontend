@@ -1,5 +1,4 @@
 import React from 'react';
-import about__photo from "../../../images/about__photo.jpg";
 
 function AboutMe(props) {
     return (
@@ -21,7 +20,7 @@ function AboutMe(props) {
                     </p>
                     <a href="https://github.com/Govard9" className="about__github">Github</a>
                 </div>
-                <img src={about__photo} alt=" Фото студента." className="about__photo"/>
+                <div className="about__photo"></div>
             </div>
         </section>
     );

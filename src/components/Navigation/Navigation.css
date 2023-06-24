@@ -3,6 +3,12 @@
     margin: auto 70px auto 0;
 }
 
+@media screen and (max-width: 768px) {
+    .nav-menu {
+        margin: auto 30px auto 0;
+    }
+}
+
 .nav-menu__list {
     display: flex;
     justify-content: space-between;
@@ -61,4 +67,54 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+/* Для работы бургера, добавить селектор */
+@media screen and (max-width: 768px) {
+    .nav-menu__list_active-burger {
+        display: none;
+    }
+}
+
+/* блок бургера */
+.nav-menu__burger {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .nav-menu__burger {
+        display: flex;
+        justify-content: flex-end;
+
+    }
+}
+
+/* бургер */
+
+.nav-menu__burger-menu {
+    background: url("../../images/icon/nav-menu__burger.svg") no-repeat;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 370px) {
+    .nav-menu {
+        margin: auto 14px auto 0;
+    }
+
+    .nav-menu__links {
+        gap: 14px;
+    }
+
+    .nav-menu__link {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .nav-menu__button {
+        font-size: 10px;
+        line-height: 16px;
+        padding: 5px 12px;
+    }
 }

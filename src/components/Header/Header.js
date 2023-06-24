@@ -4,7 +4,7 @@ import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
     return (
-        <header className="header header_black" aria-label="Шапка сайта">
+        <header className="header" aria-label="Шапка сайта">
             <a href="/" className="header__link-img">
                 <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo"/>
             </a>

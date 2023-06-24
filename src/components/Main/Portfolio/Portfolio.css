@@ -1,13 +1,12 @@
 /* Секция */
 .portfolio {
-    max-width: 1280px;
     margin: 0 auto;
     background: #202020;
 }
 
 /* Title */
 .portfolio__title {
-    margin: 0 0 30px 70px;
+    margin: 0 70px 30px 70px;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -18,25 +17,21 @@
 
 /* Гланвый блок */
 .portfolio__blocks {
-    max-width: 1140px;
-    margin: 0 0 0 70px;
-    padding: 0;
+    padding: 0 70px 125px 70px;
+    margin: 0;
 }
 
 .portfolio__block {
+    padding: 20px 0 0 0;
     list-style-type: none;
 }
 
-.portfolio__block {
-    margin: 20px 0 0 0;
-}
-
 .portfolio__block-info {
-
+    padding: 0 0 19px 0;
 }
 
 .portfolio__block-info:last-child {
-    padding-bottom: 125px;
+    padding: 0;
 }
 
 /* Ссылка */
@@ -54,10 +49,59 @@
 
 /* Линия мод. */
 .promo__line_new-color {
+    width: 100%;
     background: #424242;
+    margin: 0 auto;
 }
 
-/* Иконка */
-.portfolio__icon {
+@media screen and (max-width: 768px) {
+    .portfolio__title {
+        margin: 0 50px 50px 50px;
+    }
 
+    .portfolio__blocks {
+        padding: 0 50px 90px 50px;
+    }
+
+    .portfolio__text {
+        font-size: 28px;
+        letter-spacing: -1.12px;
+    }
+
+    .portfolio__icon {
+        width: 15px;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .portfolio__title {
+        margin: 0 14px 40px 14px;
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .portfolio__blocks {
+        padding: 0 14px 70px 14px;
+    }
+
+    .portfolio__block:first-child {
+        padding: 0;
+    }
+
+    .portfolio__text {
+        font-size: 18px;
+        line-height: 28px;
+        letter-spacing: -0.72px;
+    }
+
+    .portfolio__icon {
+        width: 12px;
+        height: 16px;
+        margin: auto 0;
+    }
+
+    .promo__line_new-color {
+        background: #E6E6E6;
+    }
 }

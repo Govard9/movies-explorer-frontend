@@ -1,6 +1,5 @@
 /* Cекция */
 .about {
-    max-width: 1280px;
     margin: 0 auto;
     background: #202020;
 }
@@ -8,12 +7,13 @@
 /* Блоки */
 .about__blocks {
     display: flex;
-    gap: 270px;
+    gap: 30px;
 }
 
 /* Блок информация о студенте */
 .about__student-info {
     margin: 66px 0 0 70px;
+    max-width: 600px;
 }
 
 .about__name {
@@ -61,9 +61,96 @@
 
 /* Фото */
 .about__photo {
-    width: 100%;
+    background: url("../../../images/about__photo.jpg") lightgray 50% / cover no-repeat;
+    min-width: 270px;
     height: 327px;
     object-fit: contain;
     border-radius: 10px;
-    margin: 66px 70px 0 0;
+    margin: 66px 70px 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    .about__student-info {
+        margin: 66px 0 0 50px
+    }
+
+    .about__photo {
+        min-width: 255px;
+        height: 307px;
+        margin: 66px 50px 0 auto;
+    }
+
+    .about__blocks {
+        gap: 50px;
+    }
+
+    .about__name {
+        font-size: 40px;
+        line-height: 40px;
+        letter-spacing: -1.6px;
+    }
+
+    .about__info {
+        margin: 16px 0 0 0;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .about__resume {
+        margin: 20px 0 0 0;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .about__github {
+        margin: 87px 0 91px 0;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .about__blocks {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0;
+    }
+
+    .about__photo {
+        margin: 60px auto 0 auto;
+    }
+
+    .about__student-info {
+        margin: 40px 50px 70px 50px;
+    }
+
+    .about__name {
+        font-size: 30px;
+        letter-spacing: -1.2px;
+    }
+
+    .about__info {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 10px 0 0 0;
+    }
+
+    .about__resume {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 20px 0 0 0;
+    }
+
+    .about__github {
+        margin: 40px 0 0 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .about__photo {
+        min-width: 292px;
+        height: 352px;
+    }
+
+    .about__student-info {
+        margin: 40px 14px 70px 14px;
+    }
 }

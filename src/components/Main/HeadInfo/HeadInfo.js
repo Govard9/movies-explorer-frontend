@@ -6,7 +6,7 @@ function HeadInfo(props) {
         <section className="header-info" aria-label="Информация о проекте">
             <div className="header-info__left-side">
                 <h1 className="header-info__main-text">
-                    Учебный&nbsp;проект&nbsp;студента факультета
+                    Учебный&nbsp;проект студента факультета&nbsp;
                     <span className="header-info__solo-text">Веб-разработки.</span>
                 </h1>
                 <p className="header-info__description">Листайте ниже, чтобы узнать больше про этот проект и его

@@ -1,6 +1,5 @@
 /* Секция */
 .tech {
-    max-width: 1280px;
     margin: 0 auto;
     background: #272727;
 }
@@ -58,4 +57,67 @@
     line-height: 17px;
     letter-spacing: -0.04em;
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 768px) {
+    .tech__title {
+        margin: 80px 0 0 0;
+    }
+
+    .tech__description {
+        margin: 22px auto 0 auto;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: -0.48px;
+    }
+
+    .tech__list-tech {
+        padding: 83px 60px 90px 60px;
+    }
+
+    .tech__tech-block {
+        width: 84px;
+        height: 57px;
+    }
+
+    .tech__name-tech {
+        font-size: 12px;
+        letter-spacing: -0.48px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .promo__line_black {
+        background: #000000;
+    }
+
+    .tech__title {
+        margin: 60px 0 0 0;
+        font-size: 30px;
+        letter-spacing: -1.2px;
+    }
+
+    .tech__description {
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: -0.44px;
+        margin: 24px auto 0 auto;
+    }
+
+    .tech__list-tech {
+        flex-wrap: wrap;
+        padding: 50px 71px 70px 71px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .tech__list-tech {
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 319px) {
+    .tech__list-tech {
+        justify-content: center;
+    }
 }

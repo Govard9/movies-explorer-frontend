@@ -8,7 +8,8 @@ function Portfolio(props) {
             <ul className="portfolio__blocks">
                 <li className="portfolio__block">
                     <div className="portfolio__block-info">
-                        <a href="#" className="portfolio__link">Статичный сайт
+                        <a href="#" className="portfolio__link">
+                            <span className="portfolio__text">Статичный сайт</span>
                             <img src={portfolio__icon} alt=" Иконка перехода на сайт." className="portfolio__icon"/>
                         </a>
                     </div>
@@ -16,7 +17,8 @@ function Portfolio(props) {
                 </li>
                 <li className="portfolio__block">
                     <div className="portfolio__block-info">
-                        <a href="#" className="portfolio__link">Адаптивный сайт
+                        <a href="#" className="portfolio__link">
+                            <span className="portfolio__text">Адаптивный сайт</span>
                             <img src={portfolio__icon} alt=" Иконка перехода на сайт." className="portfolio__icon"/>
                         </a>
                     </div>
@@ -24,7 +26,8 @@ function Portfolio(props) {
                 </li>
                 <li className="portfolio__block">
                     <div className="portfolio__block-info">
-                        <a href="#" className="portfolio__link">Одностраничное приложение
+                        <a href="#" className="portfolio__link">
+                            <span className="portfolio__text">Одностраничное приложение</span>
                             <img src={portfolio__icon} alt=" Иконка перехода на сайт." className="portfolio__icon"/>
                         </a>
                     </div>
