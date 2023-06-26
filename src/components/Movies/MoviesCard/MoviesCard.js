@@ -11,7 +11,9 @@ function MoviesCard(props) {
                     </h5>
                     <time className="card__time">1ч 42м</time>
                 </div>
-                <button className="card__saved card__saved_active" aria-label="поставить лайк" type="button"></button>
+                <button className="card__saved-film card__saved-film_active" aria-label="сохранить фильм" type="button"></button>
+                {/* Тут пропишу в будущем логику, чтобы отображались разные кнопки на разных страницах */}
+                {/*<button className="card__delete-film" aria-label="удалить фильм из сохранённых" type="button"></button>*/}
             </div>
             <a href="#" className="card__image-link">
                 <img src={card_image} alt=" Превью фильма." className="card__image"/>
