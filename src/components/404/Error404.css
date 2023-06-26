@@ -7,8 +7,6 @@
 }
 
 .error__block-info {
-    width: 400px;
-    height: 169px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,4 +39,27 @@
     color: #4285F4;
     margin: 184px 0 0 0;
     text-decoration: none;
+}
+
+@media screen and (max-width: 320px) {
+    .error {
+        align-items: normal;
+
+    }
+    .error__title {
+        padding: 330px 10px 10px 10px;
+        font-size: 80px;
+        height: 130px;
+    }
+
+    .error__span {
+        font-size: 12px;
+    }
+
+    .error__link {
+        padding: 340px 0 30px 0;
+        margin: 0;
+        font-size: 12px;
+
+    }
 }
