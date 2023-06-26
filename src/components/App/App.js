@@ -11,7 +11,7 @@ import Register from '../Register/Register';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Error404 />} />
+      <Route path="/" element={<Main />} />
       <Route path="/movies" element={<Movies />} />
       <Route path="/saved-movies" element={<SavedMovies />} />
       <Route path="/profile" element={<Profile />} />

@@ -69,6 +69,11 @@
     cursor: pointer;
 }
 
+/* блок бургера */
+.nav-menu__burger {
+    display: none;
+}
+
 /* Для работы бургера, добавить селектор */
 @media screen and (max-width: 768px) {
     .nav-menu__list_active-burger {
@@ -76,12 +81,11 @@
     }
 }
 
-/* блок бургера */
-.nav-menu__burger {
-    display: none;
-}
-
 @media screen and (max-width: 768px) {
+    .nav-menu__list {
+        display: none;
+    }
+
     .nav-menu__burger {
         display: flex;
         justify-content: flex-end;
