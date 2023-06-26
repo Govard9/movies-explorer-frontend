@@ -12,7 +12,7 @@ function Profile(props) {
                     <span className="profile__text">Виталий</span>
                 </li>
                 <li className="profile__line">
-                    <div className="promo__line"></div>
+                    <div className="promo__line promo__line_profile"></div>
                 </li>
                 <li className="profile__text">
                     <span className="profile__text">E-mail</span>

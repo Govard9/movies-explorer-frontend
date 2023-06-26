@@ -71,3 +71,46 @@
     line-height: 16px;
     color: #EE3465;
 }
+
+.promo__line_profile {
+    width: 100%;
+    margin: 0 auto;
+    background: #424242;
+}
+
+@media screen and (max-width: 768px) {
+    .profile__title {
+        margin: 236px 0 0 0;
+    }
+
+    .profile__block-info {
+        margin: 96px auto 0 auto;
+    }
+
+    .profile__block-edit-out {
+        padding: 210px 0 70px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .profile__title {
+        margin: 70px 0 0 0;
+    }
+
+    .profile__block-info {
+        margin: 80px auto 0 auto;
+        padding: 0 30px;
+    }
+
+    .profile__block-edit-out {
+        padding: 380px 0 0 0;
+    }
+
+    .profile__link-edit-profile {
+        font-size: 12px;
+    }
+
+    .profile__link-logout {
+        font-size: 12px;
+    }
+}
