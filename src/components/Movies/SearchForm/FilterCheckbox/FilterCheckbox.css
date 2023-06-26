@@ -59,3 +59,9 @@
 .toggle-switch__checkbox:checked + .toggle-switch__slider:before {
     transform: translateX(18px);
 }
+
+@media screen and (max-width: 768px) {
+    .filter {
+        padding: 42px 0 51px 0;
+    }
+}

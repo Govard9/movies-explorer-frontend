@@ -26,3 +26,20 @@
     color: #FFFFFF;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .cards {
+        padding: 30px 30px 10px 30px;
+    }
+
+    .cards__block-more {
+        padding: 80px 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .cards {
+        padding: 20px 10px 10px 10px;
+    }
+
+}

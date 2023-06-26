@@ -15,7 +15,7 @@ function SearchForm(props) {
             </div>
             <FilterCheckbox />
             <div className="search-form__line">
-                <div className="promo__line promo__line_new-color promo__line_padding-bottom"></div>
+                <div className="promo__line promo__line_color-for-search promo__line_padding-bottom"></div>
             </div>
         </section>
     );
