@@ -63,6 +63,15 @@
     outline: none;
 }
 
+.register__input_profile {
+    width: 122px;
+    height: 14px;
+    padding: 0;
+    text-align: right;
+    font-size: 11px;
+    border: 1px solid #424242;
+}
+
 .register__input_pass-red {
     color: #EE3465;
 }
@@ -95,6 +104,11 @@
 
 .register__button_margin-none {
     margin: 0;
+}
+
+.register__button_disabled {
+    color: #C2C2C2;
+    background: #F8F8F8;
 }
 
 .register__button:hover {
