@@ -8,7 +8,7 @@ function Portfolio(props) {
             <ul className="portfolio__blocks">
                 <li className="portfolio__block">
                     <div className="portfolio__block-info">
-                        <a href="#" className="portfolio__link">
+                        <a href="https://govard9.github.io/russian-travel/" className="portfolio__link" target="_blank">
                             <span className="portfolio__text">Статичный сайт</span>
                             <img src={portfolio__icon} alt=" Иконка перехода на сайт." className="portfolio__icon"/>
                         </a>
@@ -17,7 +17,7 @@ function Portfolio(props) {
                 </li>
                 <li className="portfolio__block">
                     <div className="portfolio__block-info">
-                        <a href="#" className="portfolio__link">
+                        <a href="https://govard9.github.io/russian-travel/" className="portfolio__link" target="_blank">
                             <span className="portfolio__text">Адаптивный сайт</span>
                             <img src={portfolio__icon} alt=" Иконка перехода на сайт." className="portfolio__icon"/>
                         </a>
@@ -26,7 +26,7 @@ function Portfolio(props) {
                 </li>
                 <li className="portfolio__block">
                     <div className="portfolio__block-info">
-                        <a href="#" className="portfolio__link">
+                        <a href="https://govard9.github.io/mesto-react/" className="portfolio__link" target="_blank">
                             <span className="portfolio__text">Одностраничное приложение</span>
                             <img src={portfolio__icon} alt=" Иконка перехода на сайт." className="portfolio__icon"/>
                         </a>

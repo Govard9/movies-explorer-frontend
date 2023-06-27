@@ -24,6 +24,13 @@
     text-align: center;
     color: #FFFFFF;
     cursor: pointer;
+    opacity: 1;
+    transition: opacity .3s ease;
+}
+
+.cards__button:hover {
+    opacity: 0.8;
+    transition: opacity .3s ease;
 }
 
 @media screen and (max-width: 768px) {

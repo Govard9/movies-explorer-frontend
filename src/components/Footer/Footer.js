@@ -11,8 +11,8 @@ function Footer(props) {
                 <p className="footer__copy-data">&copy; 2023</p>
                 <ul className="footer__block-menu">
                     <li className="footer__links">
-                        <a href="https://practicum.yandex.ru/" className="footer__link">Яндекс.Практикум</a>
-                        <a href="https://github.com/Govard9" className="footer__link">Github</a>
+                        <a href="https://practicum.yandex.ru/" target="_blank" className="footer__link">Яндекс.Практикум</a>
+                        <a href="https://github.com/Govard9" target="_blank" className="footer__link">Github</a>
                     </li>
                 </ul>
             </div>

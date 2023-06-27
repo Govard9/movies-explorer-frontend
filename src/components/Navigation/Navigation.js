@@ -14,7 +14,7 @@ function Navigation(props) {
                 <ul className="nav-menu__list nav-menu__list_active-burger">
                     {/* Если пользователь авторизован */}
                     <li className="nav-menu__links nav-menu__links_gap">
-                        <a href="/movies" className="nav-menu__link nav-menu__link_size">Фильмы</a>
+                        <a href="/movies" className="nav-menu__link nav-menu__link_size nav-menu__link_active">Фильмы</a>
                         <a href="/saved-movies" className="nav-menu__link nav-menu__link_size">Сохраненные фильмы</a>
                     </li>
                     {/* Если пользователь не авторизован */}

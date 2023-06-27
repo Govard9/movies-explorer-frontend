@@ -60,6 +60,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #FFFFFF;
+    outline: none;
 }
 
 .register__input_pass-red {
@@ -88,6 +89,17 @@
     color: #FFFFFF;
     cursor: pointer;
     margin-top: 70px;
+    opacity: 1;
+    transition: .3s ease;
+}
+
+.register__button_margin-none {
+    margin: 0;
+}
+
+.register__button:hover {
+    opacity: .8;
+    transition: opacity .3s ease;
 }
 
 .register__login-block {
@@ -154,6 +166,10 @@
 
     .register__login {
         font-size: 12px;
+    }
+
+    .register__button_margin-none {
+        margin: 0;
     }
 
 }

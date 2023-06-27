@@ -10,6 +10,7 @@ function Movies(props) {
         <>
             <Header />
             <SearchForm />
+            {/* Прелоадер готов к использованию. */}
             {/*<Preloader />*/}
             <MoviesCardList />
             <Footer />

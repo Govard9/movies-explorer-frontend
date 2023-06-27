@@ -2,7 +2,7 @@ import React from 'react';
 
 function AboutMe(props) {
     return (
-        <section className="about" aria-label="Секция студент">
+        <section className="about" id="anchor-about" aria-label="Секция студент">
             <h2 className="promo__main-title">Студент</h2>
             <div className="promo__line"></div>
             <div className="about__blocks">
@@ -18,7 +18,7 @@ function AboutMe(props) {
                         фронтенд-разработчиком в аутсорсинговой компании, специализирующейся на проектах электронной
                         коммерции. У меня есть опыт создания интернет-магазинов на платформах CMS.
                     </p>
-                    <a href="https://github.com/Govard9" className="about__github">Github</a>
+                    <a href="https://github.com/Govard9" target="_blank" className="about__github">Github</a>
                 </div>
                 <div className="about__photo"></div>
             </div>

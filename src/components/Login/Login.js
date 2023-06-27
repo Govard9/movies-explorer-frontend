@@ -5,9 +5,10 @@ function Login(props) {
     return (
         <section className="register">
             <div className="register__head">
-                <a href="/" className="header__link-img header__link-img_margin">
-                    <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo header__logo_left"/>
-                </a>
+                <div className="header__block-logo-link">
+                    <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo header__link-img_margin"/>
+                    <a href="/" className="header__link-img header__link-img_margin"/>
+                </div>
                 <h3 className="register__title">Рады видеть!</h3>
             </div>
             <form className="register__form">

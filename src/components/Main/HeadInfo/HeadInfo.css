@@ -43,8 +43,8 @@
 }
 
 .header-info__button {
-    max-width: 131px;
-    height: 36px;
+    text-decoration: none;
+    width: 89px;
     margin: 146px 0 75px 0;
     padding: 10px 20px;
     border: 1px solid #FFFFFF;
@@ -55,9 +55,9 @@
     font-size: 12px;
     display: flex;
     align-items: center;
+    justify-content: center;
     color: #FFFFFF;
 
-    background: #073042;
     cursor: pointer;
 }
 

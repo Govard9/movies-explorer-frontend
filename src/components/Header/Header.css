@@ -8,6 +8,8 @@
 }
 
 .header__link-img {
+    position: absolute;
+    left: 0;
     width: 38px;
     height: 38px;
     margin: auto 0 auto 70px;
@@ -17,13 +19,29 @@
     background: #202020;
 }
 
+.header__block-logo-link {
+    position: relative;
+}
+
+.header__logo {
+    margin: auto 0 auto 70px;
+}
+
 @media screen and (max-width: 768px) {
+    .header__logo {
+        margin: auto 0 auto 30px;
+    }
+
     .header__link-img {
         margin: auto 0 auto 30px;
     }
 }
 
 @media screen and (max-width: 370px) {
+    .header__logo {
+        margin: auto 0 auto 14px;
+    }
+
     .header__link-img {
         margin: auto 0 auto 14px;
     }

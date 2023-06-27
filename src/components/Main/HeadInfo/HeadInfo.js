@@ -1,5 +1,5 @@
 import React from 'react';
-import image_planet from '../../../images/icon/header-info__image-planet.svg';
+import image_planet from '../../../images/header-info__image-planet.svg';
 
 function HeadInfo(props) {
     return (
@@ -11,13 +11,11 @@ function HeadInfo(props) {
                 </h1>
                 <p className="header-info__description">Листайте ниже, чтобы узнать больше про этот проект и его
                     создателя.</p>
-                <button className="header-info__button">Узнать больше</button>
+                <a href="#anchor-about" className="header-info__button">Узнать больше</a>
             </div>
             <div className="header-info__right-side">
                 <img src={image_planet} alt=" Нарисованная планета словами WEB." className="header-info__image-planet"/>
             </div>
-
-
         </section>
     );
 }

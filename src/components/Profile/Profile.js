@@ -20,8 +20,11 @@ function Profile(props) {
                 </li>
             </ul>
             <div className="profile__block-edit-out">
-                <a href="#" className="profile__link-edit-profile">Редактировать</a>
-                <a href="#" className="profile__link-logout">Выйти из аккаунта</a>
+                <button className="profile__link-edit-profile">Редактировать</button>
+                <button className="profile__link-logout">Выйти из аккаунта</button>
+                {/* Если пользователь нажал на кнопку "Редактировать" то появляется кнопка "Сохранить" */}
+                {/*<span className="profile__error-info">При обновлении профиля произошла ошибка.</span>*/}
+                {/*<button className="register__button register__button_margin-none">Сохранить</button>*/}
             </div>
         </section>
     );
