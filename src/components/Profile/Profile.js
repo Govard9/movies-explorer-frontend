@@ -15,12 +15,17 @@ function Profile(props) {
                     {/*    type="text"*/}
                     {/*    className="register__input register__input_profile"*/}
                     {/*    minLength="5"*/}
-                    {/*    maxLength="35"/>*/}
+                    {/*    maxLength="35"*/}
+                    {/*    required*/}
+                    {/*/>*/}
                 </li>
                 <li className="profile__line">
-                    <div className="promo__line promo__line_profile"></div>
+                    <div className="promo">
+                        <div className="promo__line promo__line_profile"></div>
+                    </div>
+
                 </li>
-                <li className="profile__text">
+                <li className="profile__text-info">
                     <span className="profile__text">E-mail</span>
                     <span className="profile__text">pochta@yandex.ru</span>
                     {/* Если пользователь нажал на кнопку "Редактировать" то появляется инпут для ввода нового email */}
@@ -28,7 +33,9 @@ function Profile(props) {
                     {/*    type="email"*/}
                     {/*    className="register__input register__input_profile"*/}
                     {/*    minLength="5"*/}
-                    {/*    maxLength="254"/>*/}
+                    {/*    maxLength="254"*/}
+                    {/*    required*/}
+                    {/*/>*/}
                 </li>
             </ul>
             <div className="profile__block-edit-out">

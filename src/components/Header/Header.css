@@ -15,6 +15,10 @@
     margin: auto 0 auto 70px;
 }
 
+.header__link-img_margin {
+    margin: 0;
+}
+
 .header_black {
     background: #202020;
 }
@@ -35,6 +39,10 @@
     .header__link-img {
         margin: auto 0 auto 30px;
     }
+
+    .header__link-img_margin {
+        margin: 0;
+    }
 }
 
 @media screen and (max-width: 370px) {
@@ -44,5 +52,9 @@
 
     .header__link-img {
         margin: auto 0 auto 14px;
+    }
+
+    .header__link-img_margin {
+        margin: 0;
     }
 }

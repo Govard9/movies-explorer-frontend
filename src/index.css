@@ -4,12 +4,17 @@
 /* Fonts */
 @import url(./vendor/fonts/fonts.css);
 
+body {
+    background: #000000;
+}
+
 /* Root */
 #root {
+    max-width: 1280px;
+    min-width: 320px;
     position: relative;
     font-family: "inter", Arial, sans-serif;
     min-height: 100vh;
-    background: #000000;
     margin: 0 auto;
 }
 

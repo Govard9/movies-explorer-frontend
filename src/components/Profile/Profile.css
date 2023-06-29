@@ -45,6 +45,11 @@
     color: #FFFFFF;
 }
 
+.profile__text-info {
+    display: flex;
+    justify-content: space-between;
+}
+
 .profile__block-edit-out {
     max-width: 410px;
     padding: 220px 0 70px 0;

@@ -8,8 +8,10 @@ function SavedMovies(props) {
     return (
         <>
             <Header />
-            <SearchForm />
-            <MoviesCardList />
+            <main className="content">
+                <SearchForm />
+                <MoviesCardList />
+            </main>
             <Footer />
         </>
     );

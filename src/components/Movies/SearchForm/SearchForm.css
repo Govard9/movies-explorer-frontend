@@ -48,6 +48,13 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    opacity: 1;
+    transition: 0.3s ease;
+}
+
+.search-form__button:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
 /* Нижняя линия */

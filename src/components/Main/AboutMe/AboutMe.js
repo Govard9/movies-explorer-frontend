@@ -3,8 +3,10 @@ import React from 'react';
 function AboutMe(props) {
     return (
         <section className="about" id="anchor-about" aria-label="Секция студент">
-            <h2 className="promo__main-title">Студент</h2>
-            <div className="promo__line"></div>
+            <div className="promo">
+                <h2 className="promo__main-title">Студент</h2>
+                <div className="promo__line"></div>
+            </div>
             <div className="about__blocks">
                 <div className="about__student-info">
                     <h3 className="about__name">Владислав</h3>

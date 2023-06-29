@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+.promo_background-color {
+    background: #272727;
+}
+
 /* О проекте */
 .promo__main-title {
     padding: 110px 70px 0 70px;
@@ -187,6 +191,10 @@
 
     .promo__line {
         margin: 28px 18px 0 18px;
+    }
+
+    .promo__line_black {
+        background: #000000;
     }
 
     .promo__text-block {

@@ -6,9 +6,11 @@ function Register(props) {
         <section className="register">
             <div className="register__head">
                 {/* Обернул в блок div для того, чтобы не применялось свойство анимации к логотипу. На все ссылки идёт анимация opacity. */}
-                <div className="header__block-logo-link">
-                    <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo header__link-img_margin"/>
-                    <a href="/" className="header__link-img header__link-img_margin"/>
+                <div className="header header_black">
+                    <div className="header__block-logo-link">
+                        <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo header__logo_margin"/>
+                        <a href="/" className="header__link-img header__link-img_margin"/>
+                    </div>
                 </div>
                 <h3 className="register__title">Добро пожаловать!</h3>
             </div>

@@ -5,7 +5,9 @@ function Footer(props) {
         <footer className="footer" aria-label="Футер сайта">
             <div className="footer__text-line-block">
                 <p className="footer__copy-text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
-                <div className="promo__line promo__line_new-color promo__line_new-color-footer"></div>
+                <div className="promo">
+                    <div className="promo__line promo__line_new-color promo__line_new-color-footer"></div>
+                </div>
             </div>
             <div className="footer__blocks-info">
                 <p className="footer__copy-data">&copy; 2023</p>

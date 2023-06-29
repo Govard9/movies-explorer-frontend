@@ -3,8 +3,10 @@ import React from 'react';
 function Techs(props) {
     return (
         <section className="tech" aria-label="Сеция технологии">
-            <h2 className="promo__main-title">Технологии</h2>
-            <div className="promo__line promo__line_black"></div>
+            <div className="promo promo_background-color">
+                <h2 className="promo__main-title">Технологии</h2>
+                <div className="promo__line promo__line_black"></div>
+            </div>
             <h3 className="tech__title">7 технологий</h3>
             <p className="tech__description">
                 На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.

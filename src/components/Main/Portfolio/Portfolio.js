@@ -13,7 +13,9 @@ function Portfolio(props) {
                             <img src={portfolio__icon} alt=" Иконка перехода на сайт." className="portfolio__icon"/>
                         </a>
                     </div>
-                    <div className="promo__line promo__line_new-color"></div>
+                    <div className="promo">
+                        <div className="promo__line promo__line_new-color"></div>
+                    </div>
                 </li>
                 <li className="portfolio__block">
                     <div className="portfolio__block-info">
@@ -22,7 +24,9 @@ function Portfolio(props) {
                             <img src={portfolio__icon} alt=" Иконка перехода на сайт." className="portfolio__icon"/>
                         </a>
                     </div>
-                    <div className="promo__line promo__line_new-color"></div>
+                    <div className="promo">
+                        <div className="promo__line promo__line_new-color"></div>
+                    </div>
                 </li>
                 <li className="portfolio__block">
                     <div className="portfolio__block-info">

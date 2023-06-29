@@ -11,11 +11,13 @@ function Main(props) {
     return (
         <>
             <Header />
-            <HeadInfo />
-            <Promo />
-            <Techs />
-            <AboutMe />
-            <Portfolio />
+            <main className="content">
+                <HeadInfo />
+                <Promo />
+                <Techs />
+                <AboutMe />
+                <Portfolio />
+            </main>
             <Footer />
         </>
     );

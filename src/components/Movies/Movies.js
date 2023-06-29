@@ -9,10 +9,12 @@ function Movies(props) {
     return (
         <>
             <Header />
-            <SearchForm />
-            {/* Прелоадер готов к использованию. */}
-            {/*<Preloader />*/}
-            <MoviesCardList />
+            <main className="content">
+                <SearchForm />
+                {/* Прелоадер готов к использованию. */}
+                {/*<Preloader />*/}
+                <MoviesCardList />
+            </main>
             <Footer />
         </>
     );
