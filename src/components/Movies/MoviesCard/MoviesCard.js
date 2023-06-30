@@ -1,7 +1,8 @@
 import React from 'react';
 import card_image from '../../../images/card__image1.jpg';
 
-function MoviesCard(props) {
+function MoviesCard({ movies }) {
+
     return (
         <article className="card">
             <div className="card__block">

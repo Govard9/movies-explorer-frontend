@@ -5,15 +5,15 @@ import Preloader from "./Preloader/Preloader";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-function Movies(props) {
+function Movies({ movies, onUpdateMovies }) {
     return (
         <>
             <Header />
             <main className="content">
-                <SearchForm />
+                <SearchForm onUpdateMovies={onUpdateMovies} />
                 {/* Прелоадер готов к использованию. */}
                 {/*<Preloader />*/}
-                <MoviesCardList />
+                <MoviesCardList movies={movies} />
             </main>
             <Footer />
         </>
