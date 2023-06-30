@@ -1,0 +1,121 @@
+/* Секция */
+.tech {
+    margin: 0 auto;
+    background: #272727;
+}
+
+/* текст 7 технологий */
+.tech__title {
+    margin: 90px 0 0 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    text-align: center;
+    letter-spacing: -0.04em;
+
+    color: #FFFFFF;
+}
+
+/* Описание секции */
+.tech__description {
+    max-width: 460px;
+    margin: 26px auto 0 auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: -0.04em;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+/* Блок с технологиями */
+.tech__list-tech {
+    padding: 100px 0 100px 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tech__tech-block {
+    list-style-type: none;
+    width: 90px;
+    height: 60px;
+    background: #303030;
+    border-radius: 10px;
+}
+
+.tech__name-tech {
+    display: flex;
+    justify-content: center;
+    margin-top: 21px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+@media screen and (max-width: 768px) {
+    .tech__title {
+        margin: 80px 0 0 0;
+    }
+
+    .tech__description {
+        margin: 22px auto 0 auto;
+        font-size: 12px;
+        line-height: 18px;
+        letter-spacing: -0.48px;
+    }
+
+    .tech__list-tech {
+        padding: 83px 60px 90px 60px;
+    }
+
+    .tech__tech-block {
+        width: 84px;
+        height: 57px;
+    }
+
+    .tech__name-tech {
+        font-size: 12px;
+        letter-spacing: -0.48px;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .tech__list-tech {
+        flex-wrap: wrap;
+        padding: 50px 71px 70px 71px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .tech__title {
+        margin: 60px 0 0 0;
+        font-size: 30px;
+        letter-spacing: -1.2px;
+    }
+
+    .tech__description {
+        font-size: 11px;
+        line-height: 16px;
+        letter-spacing: -0.44px;
+        margin: 24px auto 0 auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .tech__list-tech {
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 319px) {
+    .tech__list-tech {
+        justify-content: center;
+    }
+}

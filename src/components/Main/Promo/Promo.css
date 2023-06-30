@@ -1,0 +1,243 @@
+.promo {
+    background: #202020;
+    margin: 0 auto;
+}
+
+.promo_background-color {
+    background: #272727;
+}
+
+/* О проекте */
+.promo__main-title {
+    padding: 110px 70px 0 70px;
+    margin: 0;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+/* Линия */
+.promo__line {
+    height: 1px;
+    background: #DADADA;
+    margin: 23px 70px 0 70px;
+}
+
+/* Блок с текстами */
+.promo__text-block {
+    display: flex;
+    padding: 70px 70px 0 70px;
+    list-style-type: none;
+    gap: 30px;
+}
+
+/* Левый блок */
+.promo__left-block {
+    max-width: 550px;
+}
+
+/* Правый блок */
+.promo__right-block {
+    max-width: 550px;
+}
+
+/* h3 теста блоков */
+.promo__title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+}
+
+/* Описание в блоках */
+.promo__description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #FFFFFF;
+}
+
+/* Блок зеленой и серой полосы */
+.promo__block-two-bands {
+    display: flex;
+}
+
+/* Зеленая полоса */
+.promo__block-band-left {
+    padding: 110px 0 0 70px;
+    width: 23%;
+}
+
+.promo__block-band-green {
+    height: 36px;
+    background: #3DDC84;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+/* Текст в зеленой полосе */
+.promo__one-week {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+/* Текст Back-end */
+.promo__text-backend {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 14px 0 110px 0;
+    color: #8B8B8B;
+}
+
+/* Правый блок полосы */
+.promo__block-band-right {
+    padding: 110px 70px 0 0;
+    width: 100%;
+}
+
+/* Серая полоса */
+.promo__block-band-grey {
+    max-width: 913px;
+    height: 36px;
+    background: #303030;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Текст серой полосы */
+.promo__four-weeks {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+/* Текст фронтенд */
+.promo__text-frontend {
+    max-width: 913px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    margin: 14px 0 110px 0;
+    color: #8B8B8B;
+}
+
+@media screen and (max-width: 768px) {
+    .promo__line {
+        margin: 23px 50px 0 50px;
+    }
+
+    .promo__main-title {
+        padding: 90px 50px 0 50px;
+    }
+
+    .promo__text-block {
+        padding: 70px 50px 0 50px;
+        margin: 0;
+    }
+
+    .promo__title {
+        margin: 0;
+    }
+
+    .promo__description {
+        padding: 22px 0 0 0;
+        margin: 0;
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .promo__block-band-left {
+        padding: 93px 0 0 50px;
+    }
+
+    .promo__block-band-right {
+        padding: 93px 50px 0 0;
+    }
+
+    .promo__text-frontend {
+        margin: 14px 0 90px 0;
+    }
+
+    .promo__text-backend {
+        margin: 14px 0 90px 0;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .promo__main-title {
+        padding: 70px 18px 0 18px;
+    }
+
+    .promo__line {
+        margin: 28px 18px 0 18px;
+    }
+
+    .promo__line_black {
+        background: #000000;
+    }
+
+    .promo__text-block {
+        flex-direction: column;
+        gap: 56px;
+        padding: 60px 18px 0 18px;
+    }
+
+    .promo__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+
+    .promo__description {
+        padding: 16px 0 0 0;
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .promo__block-band-left {
+        padding: 60px 0 0 18px;
+        min-width: 100px;
+    }
+
+    .promo__one-week {
+        font-size: 11px;
+    }
+
+    .promo__text-backend {
+        margin: 10px 0 70px 0;
+        font-size: 11px;
+    }
+
+    .promo__block-band-right {
+        padding: 60px 18px 0 0;
+    }
+
+    .promo__four-weeks {
+        font-size: 11px;
+    }
+
+    .promo__text-frontend {
+        margin: 10px 0 70px 0;
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,9 @@
+.register__button_margin {
+    margin: 155px 0 0 0;
+}
+
+@media screen and (max-width: 500px) {
+    .register__button_margin {
+        margin: 335px 0 0 0;
+    }
+}

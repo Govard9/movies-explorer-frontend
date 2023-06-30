@@ -1,0 +1,83 @@
+/* Normalize */
+@import url(./vendor/normalize.css);
+
+/* Fonts */
+@import url(./vendor/fonts/fonts.css);
+
+body {
+    background: #000000;
+}
+
+/* Root */
+#root {
+    max-width: 1280px;
+    min-width: 320px;
+    position: relative;
+    font-family: "inter", Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+a {
+    opacity: 1;
+    transition: .3s ease;
+}
+
+a:hover {
+    opacity: .7;
+    transition: opacity .3s ease;
+}
+
+/* Header */
+@import url(./components/Header/Header.css);
+
+/* Navigation */
+@import url(./components/Navigation/Navigation.css);
+
+/* Popup Menu */
+@import url(./components/Navigation/PopupMenu/PopupMenu.css);
+
+/* Header Info */
+@import url(./components/Main/HeadInfo/HeadInfo.css);
+
+/* Promo */
+@import url(./components/Main/Promo/Promo.css);
+
+/* Technologies */
+@import url(./components/Main/Techs/Techs.css);
+
+/* AboutMe */
+@import url(./components/Main/AboutMe/AboutMe.css);
+
+/* Portfolio */
+@import url(./components/Main/Portfolio/Portfolio.css);
+
+/* Footer */
+@import url(./components/Footer/Footer.css);
+
+/* SearchForm */
+@import url(./components/Movies/SearchForm/SearchForm.css);
+
+/* FilterCheckbox */
+@import url(./components/Movies/SearchForm/FilterCheckbox/FilterCheckbox.css);
+
+/* Preloader */
+@import url(./components/Movies/Preloader/Preloader.css);
+
+/* Cards */
+@import url(./components/Movies/MoviesCardList/MoviesCardList.css);
+
+/* Card */
+@import url(./components/Movies/MoviesCard/MoviesCard.css);
+
+/* Profile */
+@import url(./components/Profile/Profile.css);
+
+/* Register */
+@import url(./components/Register/Register.css);
+
+/* Login */
+@import url(./components/Login/Login.css);
+
+/* 404 */
+@import url(./components/404/Error404.css);

@@ -1,0 +1,51 @@
+.cards {
+    margin: 0 auto;
+    background: #202020;
+    padding: 30px 70px 10px 70px;
+}
+
+.cards__block-more {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0 80px 0;
+}
+
+.cards__button {
+    width: 320px;
+    height: 36px;
+    background: #2F2F2F;
+    border-radius: 6px;
+    border: none;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity .3s ease;
+}
+
+.cards__button:hover {
+    opacity: 0.8;
+    transition: opacity .3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .cards {
+        padding: 30px 30px 10px 30px;
+    }
+
+    .cards__block-more {
+        padding: 80px 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .cards {
+        padding: 20px 10px 10px 10px;
+    }
+
+}

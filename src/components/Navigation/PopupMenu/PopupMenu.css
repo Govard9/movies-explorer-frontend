@@ -1,0 +1,102 @@
+@media screen and (max-width: 768px) {
+    .popup-main-block {
+        position: fixed;
+        display: flex;
+        justify-content: flex-end;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+
+    .popup-menu {
+        position: relative;
+        width: 520px;
+        height: 100vh;
+        background: #202020;
+        opacity: 1;
+    }
+
+    .nav-menu__burger-menu_close {
+        background: url(../../../images/icon/nav-menu__burger-menu_close.svg) no-repeat;
+        width: 22px;
+        height: 22px;
+        margin: 22px 22px 105px auto;
+    }
+
+    .nav-menu__list_popup {
+        height: 73%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 92px 0;
+        padding: 0;
+    }
+
+    .nav-menu__links_popup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        gap: 22px;
+    }
+
+    .nav-menu__links_popup-block-account {
+        margin: 0;
+
+    }
+
+    .nav-menu__link_popup-size {
+        font-size: 18px;
+    }
+
+    .nav-menu__link_popup-size:after {
+        display: inline-block;
+        content: '';
+        width: 100%;
+        height: 2px;
+        background: #FFFFFF;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    .nav-menu__link_popup-size:hover:after {
+        opacity: 1;
+        transition: opacity 1s ease;
+    }
+}
+
+@media screen and (max-height: 560px) {
+    .nav-menu__list_popup {
+        height: 45%;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .nav-menu__list_popup {
+        height: 79%;
+    }
+
+    .nav-menu__burger-menu_close {
+        margin: 14px 14px 100px auto;
+    }
+
+    .nav-menu__list_popup {
+        padding: 0 0 48px 0;
+    }
+}
+
+@media screen and (max-height: 670px) {
+    .nav-menu__list_popup {
+        height: 45%;
+        margin: 0;
+    }
+
+    .nav-menu__links_popup-block-account {
+        padding: 30px 0 0 0;
+    }
+}

@@ -1,0 +1,136 @@
+.header-info {
+    display: flex;
+    background: #073042;
+    margin: 0 auto;
+}
+
+.header-info__left-side {
+    max-width: 640px;
+    max-height: 500px;
+    padding: 75px 0 0 70px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-info__main-text {
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    color: #FFFFFF;
+}
+
+.header-info__solo-text {
+    display: inline-block;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    color: #FFFFFF;
+}
+
+.header-info__description {
+    max-width: 310px;
+    margin: 36px 0 0 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+    mix-blend-mode: normal;
+    opacity: 0.5;
+}
+
+.header-info__button {
+    text-decoration: none;
+    width: 89px;
+    margin: 146px 0 75px 0;
+    padding: 10px 20px;
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
+
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+
+    cursor: pointer;
+}
+
+.header-info__right-side {
+    max-width: 310px;
+    max-height: 304px;
+    margin: 75px 70px 0 auto;
+}
+
+@media screen and (max-width: 1014px) {
+    .header-info {
+        flex-direction: column-reverse;
+        padding: 140px 0 0 0;
+    }
+
+    .header-info__right-side {
+        margin: 0 auto;
+    }
+
+    .header-info__left-side {
+        align-items: center;
+        max-width: 680px;
+        max-height: 360px;
+        padding: 48px 0 0 0;
+        margin: 0 auto;
+    }
+
+    .header-info__main-text {
+        text-align: center;
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    .header-info__solo-text {
+        text-align: center;
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    .header-info__description {
+        max-width: 260px;
+        text-align: center;
+        margin: 22px 0 0 0;
+    }
+
+    .header-info__button {
+        margin: 92px 0 75px 0;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .header-info {
+        padding: 70px 0 0 0;
+    }
+
+    .header-info__image-planet {
+        width: 210px;
+        height: 206px;
+    }
+
+    .header-info__main-text {
+        font-size: 30px;
+        line-height: 38px;
+        letter-spacing: -1.2px;
+    }
+
+    .header-info__solo-text {
+        font-size: 30px;
+        line-height: 38px;
+        letter-spacing: -1.2px;
+    }
+
+    .header-info__button {
+        margin: 80px 0 30px 0;
+    }
+}
