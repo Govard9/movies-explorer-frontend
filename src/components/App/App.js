@@ -13,15 +13,40 @@ import {useState} from "react";
 function App() {
 
     const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMovies, setErrorMovies] = useState('');
+    const [isFirstRender, setIsFirstRender] = useState('');
 
-    const handleUpdateSearch = (resFilm) => {
-        console.log(resFilm)
-        resFilm && moviesApi.getResultSearch().then(movie => {
-            setMovies(movie);
-            console.log(movie)
-        }).catch((err) => {
-            console.log(err);
-        })
+    const handleUpdateSearch = (results) => {
+        console.log(results)
+        setIsLoading(true);
+
+        moviesApi.getResultSearch()
+            .then((movie) => {
+                // setTimeout не обязателен, но я установил его для дольшей демонтрации прелоадера.
+                setTimeout(() => {
+                    if (results.toggle) {
+                        const filteredMovies = movie.filter(
+                            (mov) => mov.nameRU.includes(results.film) && mov.duration <= 40
+                        );
+                        setMovies(filteredMovies);
+                        setIsFirstRender('Ничего не найдено.')
+                    } else {
+                        const filteredMovies = movie.filter((mov) =>
+                            mov.nameRU.includes(results.film)
+                        );
+                        setMovies(filteredMovies);
+                        setIsFirstRender('Ничего не найдено.')
+                    }
+
+                    setIsLoading(false);
+                }, 2000);
+            })
+            .catch((err) => {
+                console.log(err);
+                setErrorMovies('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер ' +
+                    'недоступен. Подождите немного и попробуйте ещё раз')
+            });
     }
 
     return (
@@ -30,6 +55,9 @@ function App() {
             <Route path="/movies" element={<Movies
                 movies={movies}
                 onUpdateMovies={handleUpdateSearch}
+                isLoading={isLoading}
+                errorMovies={errorMovies}
+                isFirstRender={isFirstRender}
             />}/>
             <Route path="/saved-movies" element={<SavedMovies/>}/>
             <Route path="/profile" element={<Profile/>}/>

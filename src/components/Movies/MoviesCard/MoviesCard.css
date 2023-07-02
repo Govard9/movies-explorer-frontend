@@ -16,6 +16,20 @@
     margin: 22px 0 0 22px;
 }
 
+.card__info-text_inactive {
+    display: none;
+}
+
+.card__info-text_color-error {
+    color: red;
+    margin: 0;
+    text-align: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+}
+
 .card__link {
     text-decoration: none;
     font-style: normal;
@@ -58,8 +72,9 @@
 
 .card__image {
     width: 220px;
-    max-height: 122px;
+    height: 122px;
     margin: 6px 6px 6px 0;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 500px) {

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import search_image from '../../../images/icon/search-form__search-image.svg';
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
@@ -6,10 +6,15 @@ function SearchForm({ onUpdateMovies }) {
 
     const [resultSearch, setResultSearch] = useState('')
     const [error, setError] = useState('');
+    const [toggle, setToggle] = useState(false);
 
     function handleSearchValue(e) {
         setResultSearch(e.target.value);
         setError('');
+    }
+
+    function handleToggle() {
+        setToggle(prevToggle => !prevToggle)
     }
 
     function handleSubmit(e) {
@@ -26,6 +31,7 @@ function SearchForm({ onUpdateMovies }) {
         // Передаём значения управляемых компонентов во внешний обработчик
         onUpdateMovies({
             film: resultSearch,
+            toggle: toggle
         });
     }
 
@@ -53,7 +59,7 @@ function SearchForm({ onUpdateMovies }) {
                     </button>
                 </form>
             </div>
-            <FilterCheckbox />
+            <FilterCheckbox handleToggle={handleToggle} />
             <div className="search-form__line">
                 <div className="promo">
                     <div className="promo__line promo__line_color-for-search promo__line_padding-bottom"></div>
