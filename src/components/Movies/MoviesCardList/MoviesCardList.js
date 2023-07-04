@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, errorMovies, isFirstRender }) {
+function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleClickDeleteFilm }) {
 
     const [indexPlusSeven, setIndexPlusSeven] = useState(6);
 
@@ -50,7 +50,14 @@ function MoviesCardList({ movies, errorMovies, isFirstRender }) {
 
     return (
         <section className="cards" aria-label="Фильмы">
-            <MoviesCard movies={movies} errorMovies={errorMovies} isFirstRender={isFirstRender} indexPlusSeven={indexPlusSeven} />
+            <MoviesCard
+                movies={movies}
+                errorMovies={errorMovies}
+                isFirstRender={isFirstRender}
+                indexPlusSeven={indexPlusSeven}
+                savedMode={savedMode}
+                handleClickDeleteFilm={handleClickDeleteFilm}
+            />
             { movies.length > indexPlusSeven &&
                 <div className={`cards__block-more ${movies.length < indexPlusSeven && "cards__block-more_inactive"}`}>
                     <button className="cards__button" onClick={handleMoreCardMovies}>Ещё</button>

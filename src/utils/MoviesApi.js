@@ -20,17 +20,13 @@ export class MoviesApi {
             .then(this.checkResponse);
     }
 
-    searchResult(data) {
-        return fetch(`${this._url}`, {
-            method: 'PATCH',
+    deleteFilm(_id) {
+        return fetch(`${this._url}/movies/${_id}`, {
+            method: 'DELETE',
             headers: {
-                // authorization: `Bearer ${localStorage.getItem('token')}`,
+                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDg1YzlmN2JkMjkzOGM3MjBkMzczYzkiLCJpYXQiOjE2ODg0NDg4MTIsImV4cCI6MTY4OTA1MzYxMn0.X-rXH33hHj-oVdQT8pcPFlbE4nR7xe5axf-8HQKh2rE`,
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                name: data.name,
-                about: data.about,
-            }),
         })
             .then(this.checkResponse)
             .then((data) => {

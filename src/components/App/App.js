@@ -9,6 +9,7 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import moviesApi from "../../utils/MoviesApi";
 import {useEffect, useState} from "react";
+import mainApi from "../../utils/MainApi";
 
 function App() {
 
@@ -53,6 +54,19 @@ function App() {
             });
     }
 
+    const handleClickDeleteFilm = (index) => {
+        mainApi.deleteFilm(movies[index])
+            .then((response) => {
+                console.log(response);
+                const updatedMovies = [...movies];
+                updatedMovies.splice(index, 1);
+                setMovies(updatedMovies);
+            }).catch((error) => {
+            // Обработка ошибки запроса
+            console.error(error);
+        });
+    }
+
     return (
         <Routes>
             <Route path="/" element={<Main/>}/>
@@ -65,7 +79,6 @@ function App() {
                 setMovies={setMovies}
             />}/>
             <Route path="/saved-movies" element={<SavedMovies
-                movies={movies}
                 onUpdateMovies={handleUpdateSearch}
                 isLoading={isLoading}
                 errorMovies={errorMovies}

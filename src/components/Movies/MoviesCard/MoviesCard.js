@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+import mainApi from "../../../utils/MainApi";
 
-function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven }) {
-    const [activeSave, setActiveSave] = useState(Array(movies.length).fill(false));
+function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedMode, handleClickDeleteFilm }) {
+    const [activeSave, setActiveSave] = useState(Array(movies.length).fill(true));
+    const [deleteFilmId, setDeleteFilmId] = useState('');
 
     const handleClickSaveFilm = (index) => {
         setActiveSave(prevState => {
@@ -9,6 +11,25 @@ function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven }) {
             newState[index] = !newState[index];
             return newState;
         });
+
+        if (activeSave[index]) {
+            mainApi.saveFilm(movies[index])
+                .then((response) => {
+                    console.log(response);
+                    setDeleteFilmId(response._id)
+                }).catch((error) => {
+                // Обработка ошибки запроса
+                console.error(error);
+            });
+        } else {
+            mainApi.deleteFilm(deleteFilmId)
+                .then((response) => {
+                    console.log(response);
+                }).catch((error) => {
+                // Обработка ошибки запроса
+                console.error(error);
+            });
+        }
     }
 
     return (
@@ -38,17 +59,28 @@ function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven }) {
                                     {`${Math.round(movie.duration / 60)}ч ${movie.duration % 60}м`}
                                 </time>
                             </div>
-                            <button
-                                className={`card__saved-film ${ activeSave[index] && "card__saved-film_active" }`}
-                                aria-label="сохранить фильм"
-                                type="button"
-                                onClick={() => handleClickSaveFilm(index)}
-                            ></button>
-                            {/* Тут пропишу в будущем логику, чтобы отображались разные кнопки на разных страницах */}
-                            {/*<button className="card__delete-film" aria-label="удалить фильм из сохранённых" type="button"></button>*/}
+                            { savedMode ?
+                                <button
+                                    className="card__delete-film"
+                                    aria-label="удалить фильм из сохранённых"
+                                    type="button"
+                                    onClick={() => handleClickDeleteFilm(index)}
+                                ></button>
+                                :
+                                <button
+                                    className={`card__saved-film ${ !activeSave[index] && "card__saved-film_active" }`}
+                                    aria-label="сохранить фильм"
+                                    type="button"
+                                    onClick={() => handleClickSaveFilm(index)}
+                                ></button>
+                            }
                         </div>
                         <a href={movie.trailerLink} target="_blank" className="card__image-link">
-                            <img src={`https://api.nomoreparties.co${movie.image.url}`} alt={`${movie.nameRU}.`} className="card__image"/>
+                            { savedMode ?
+                                <img src={movie.image} alt={movie.nameRU} className="card__image"/>
+                                :
+                                <img src={`https://api.nomoreparties.co${movie.image.url}`} alt={movie.nameRU} className="card__image"/>
+                            }
                         </a>
                     </article>
                 ))
