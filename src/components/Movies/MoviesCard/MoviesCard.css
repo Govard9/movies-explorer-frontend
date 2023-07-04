@@ -96,9 +96,9 @@
     }
 
     .card__block {
-        height: 64px;
         flex-direction: row;
         gap: 85px;
+        padding: 0 0 14px 0;
     }
 
     .card__title {

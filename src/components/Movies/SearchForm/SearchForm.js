@@ -4,9 +4,9 @@ import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
 function SearchForm({ onUpdateMovies }) {
 
-    const [resultSearch, setResultSearch] = useState('')
+    const [resultSearch, setResultSearch] = useState(localStorage.getItem('searchFilm'))
     const [error, setError] = useState('');
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(JSON.parse(localStorage.getItem('toggle')));
 
     function handleSearchValue(e) {
         setResultSearch(e.target.value);
@@ -48,6 +48,7 @@ function SearchForm({ onUpdateMovies }) {
                         name="film"
                         minLength="5"
                         maxLength="75"
+                        value={resultSearch}
                         required
                         placeholder="Фильм"
                         className="search-form__input"
@@ -59,7 +60,7 @@ function SearchForm({ onUpdateMovies }) {
                     </button>
                 </form>
             </div>
-            <FilterCheckbox handleToggle={handleToggle} />
+            <FilterCheckbox handleToggle={handleToggle} toggle={toggle} />
             <div className="search-form__line">
                 <div className="promo">
                     <div className="promo__line promo__line_color-for-search promo__line_padding-bottom"></div>

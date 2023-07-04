@@ -1,7 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-function MoviesCard({ movies, errorMovies, isFirstRender }) {
-    console.log(movies)
+function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven }) {
+    const [activeSave, setActiveSave] = useState(Array(movies.length).fill(false));
+
+    const handleClickSaveFilm = (index) => {
+        setActiveSave(prevState => {
+            const newState = [...prevState];
+            newState[index] = !newState[index];
+            return newState;
+        });
+    }
 
     return (
         <>
@@ -18,7 +26,8 @@ function MoviesCard({ movies, errorMovies, isFirstRender }) {
             )}
 
             {movies.length > 0 && (
-                movies.map((movie) => (
+                movies.map((movie, index) => (
+                    index <= indexPlusSeven &&
                     <article className="card" key={movie.id}>
                         <div className="card__block">
                             <div className="card__block-text">
@@ -29,7 +38,12 @@ function MoviesCard({ movies, errorMovies, isFirstRender }) {
                                     {`${Math.round(movie.duration / 60)}ч ${movie.duration % 60}м`}
                                 </time>
                             </div>
-                            <button className="card__saved-film card__saved-film_active" aria-label="сохранить фильм" type="button"></button>
+                            <button
+                                className={`card__saved-film ${ activeSave[index] && "card__saved-film_active" }`}
+                                aria-label="сохранить фильм"
+                                type="button"
+                                onClick={() => handleClickSaveFilm(index)}
+                            ></button>
                             {/* Тут пропишу в будущем логику, чтобы отображались разные кнопки на разных страницах */}
                             {/*<button className="card__delete-film" aria-label="удалить фильм из сохранённых" type="button"></button>*/}
                         </div>

@@ -8,7 +8,7 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import moviesApi from "../../utils/MoviesApi";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
 
@@ -23,23 +23,27 @@ function App() {
 
         moviesApi.getResultSearch()
             .then((movie) => {
-                // setTimeout не обязателен, но я установил его для дольшей демонтрации прелоадера.
+                // setTimeout не обязателен, но я установил его для дольшей демонстрации прелоадера.
                 setTimeout(() => {
                     if (results.toggle) {
                         const filteredMovies = movie.filter(
                             (mov) => mov.nameRU.includes(results.film) && mov.duration <= 40
                         );
+                        localStorage.setItem('movies', JSON.stringify(filteredMovies));
                         setMovies(filteredMovies);
                         setIsFirstRender('Ничего не найдено.')
                     } else {
                         const filteredMovies = movie.filter((mov) =>
                             mov.nameRU.includes(results.film)
                         );
+                        localStorage.setItem('movies', JSON.stringify(filteredMovies));
                         setMovies(filteredMovies);
                         setIsFirstRender('Ничего не найдено.')
                     }
-
                     setIsLoading(false);
+
+                    localStorage.setItem('searchFilm', results.film);
+                    localStorage.setItem('toggle', results.toggle);
                 }, 2000);
             })
             .catch((err) => {
@@ -58,8 +62,16 @@ function App() {
                 isLoading={isLoading}
                 errorMovies={errorMovies}
                 isFirstRender={isFirstRender}
+                setMovies={setMovies}
             />}/>
-            <Route path="/saved-movies" element={<SavedMovies/>}/>
+            <Route path="/saved-movies" element={<SavedMovies
+                movies={movies}
+                onUpdateMovies={handleUpdateSearch}
+                isLoading={isLoading}
+                errorMovies={errorMovies}
+                isFirstRender={isFirstRender}
+                setMovies={setMovies}
+            />}/>
             <Route path="/profile" element={<Profile/>}/>
 
             <Route path="/signin" element={<Login/>}/>

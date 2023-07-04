@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-function FilterCheckbox({ handleToggle }) {
+function FilterCheckbox({handleToggle, toggle}) {
+
     return (
         <div className="filter">
             <label className="toggle-switch">
@@ -9,7 +10,16 @@ function FilterCheckbox({ handleToggle }) {
                     className="toggle-switch__checkbox"
                     onClick={handleToggle}
                 />
-                <span className="toggle-switch__slider"></span>
+
+                {!toggle ?
+                    <span className="toggle-switch__slider-white">
+                        <span className={"toggle-switch__slider_white-left"}></span>
+                    </span>
+                    :
+                    <span className="toggle-switch__slider-green">
+                        <span className={"toggle-switch__slider_white-right"}></span>
+                    </span>
+                }
             </label>
             <span className="filter__text">Короткометражки</span>
         </div>
