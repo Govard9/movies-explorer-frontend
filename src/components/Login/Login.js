@@ -1,5 +1,6 @@
 import React from 'react';
 import header__logo from "../../images/logo/header__logo.svg";
+import {Link} from "react-router-dom";
 
 function Login(props) {
     return (
@@ -8,7 +9,7 @@ function Login(props) {
                 <div className="header header_black">
                     <div className="header__block-logo-link">
                         <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo header__logo_margin"/>
-                        <a href="/" className="header__link-img header__link-img_margin"/>
+                        <Link to="/" className="header__link-img header__link-img_margin"/>
                     </div>
                 </div>
                 <h3 className="register__title">Рады видеть!</h3>
@@ -24,7 +25,7 @@ function Login(props) {
             </form>
             <div className="register__login-block">
                 <span className="register__text">Ещё не зарегистрированы?</span>
-                <a href="/signup" className="register__login">Регистрация</a>
+                <Link to="/signup" className="register__login">Регистрация</Link>
             </div>
         </section>
     );

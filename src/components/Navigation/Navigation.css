@@ -33,6 +33,19 @@
     color: #FFFFFF;
 }
 
+.nav-menu__link_color-black {
+    padding: 8px 20px;
+    background: #3DDC84;
+    border-radius: 3px;
+    border: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+    color: #000000;
+}
+
 .nav-menu__link_active {
     font-weight: 500;
 }
@@ -42,17 +55,8 @@
     line-height: 18px;
 }
 
-.nav-menu__button {
-    padding: 8px 20px;
-    background: #3DDC84;
-    border-radius: 3px;
-    border: none;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    color: #000000;
-    cursor: pointer;
+.nav-menu__login-block {
+
 }
 
 /* Выход из профиля */
@@ -119,7 +123,7 @@
         line-height: 16px;
     }
 
-    .nav-menu__button {
+    .nav-menu__login-block {
         font-size: 10px;
         line-height: 16px;
         padding: 5px 12px;

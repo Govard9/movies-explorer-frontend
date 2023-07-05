@@ -1,6 +1,7 @@
 import React from 'react';
 import logout_icon from '../../images/icon/nav-menu__logout-icon.svg';
 import PopupMenu from "./PopupMenu/PopupMenu";
+import {Link} from "react-router-dom";
 
 function Navigation(props) {
     return (
@@ -13,22 +14,22 @@ function Navigation(props) {
                 </div>
                 <ul className="nav-menu__list nav-menu__list_active-burger">
                     {/* Если пользователь авторизован */}
-                    <li className="nav-menu__links nav-menu__links_gap">
-                        <a href="/movies" className="nav-menu__link nav-menu__link_size nav-menu__link_active">Фильмы</a>
-                        <a href="/saved-movies" className="nav-menu__link nav-menu__link_size">Сохраненные фильмы</a>
-                    </li>
-                    {/* Если пользователь не авторизован */}
-                    {/*<li className="nav-menu__links">*/}
-                    {/*    <a href="#" className="nav-menu__link">Регистрация</a>*/}
-                    {/*    <button className="nav-menu__button">Войти</button>*/}
+                    {/*<li className="nav-menu__links nav-menu__links_gap">*/}
+                    {/*    <a href="/movies" className="nav-menu__link nav-menu__link_size nav-menu__link_active">Фильмы</a>*/}
+                    {/*    <a href="/saved-movies" className="nav-menu__link nav-menu__link_size">Сохраненные фильмы</a>*/}
                     {/*</li>*/}
-                    {/* Если пользователь авторизован */}
-                    <li className="nav-menu__links nav-menu__links_gap">
-                        <a href="/profile" className="nav-menu__link nav-menu__link_profile">Аккаунт</a>
-                        <div className="nav-menu__background-block">
-                            <img src={logout_icon} alt=" Иконка выхода из профиля." className="nav-menu__logout-icon"/>
-                        </div>
+                    {/* Если пользователь не авторизован*/}
+                    <li className="nav-menu__links">
+                        <Link to="/signup" className="nav-menu__link">Регистрация</Link>
+                        <Link to="/signin" className="nav-menu__link nav-menu__link_color-black">Войти</Link>
                     </li>
+                     {/*Если пользователь авторизован*/}
+                    {/*<li className="nav-menu__links nav-menu__links_gap">*/}
+                    {/*    <a href="/profile" className="nav-menu__link nav-menu__link_profile">Аккаунт</a>*/}
+                    {/*    <div className="nav-menu__background-block">*/}
+                    {/*        <img src={logout_icon} alt=" Иконка выхода из профиля." className="nav-menu__logout-icon"/>*/}
+                    {/*    </div>*/}
+                    {/*</li>*/}
                 </ul>
             </nav>
         </>
