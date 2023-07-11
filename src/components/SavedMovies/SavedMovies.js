@@ -21,10 +21,19 @@ function SavedMovies({ onUpdateMovies, isLoading, errorMovies, isFirstRender }) 
     const handleClickDeleteFilm = (index) => {
         mainApi.deleteFilm(movies[index]._id)
             .then((response) => {
+
+                const film = movies[index];
+                const filmId = film.movieId;
+
                 console.log(response);
                 const updatedMovies = [...movies];
                 updatedMovies.splice(index, 1);
                 setMovies(updatedMovies);
+
+                // Удалить фильм из локального хранилища
+                const savedFilms = JSON.parse(localStorage.getItem('savedFilms')) || [];
+                const updatedFilms = savedFilms.filter((film) => film.id !== filmId);
+                localStorage.setItem('savedFilms', JSON.stringify(updatedFilms));
             }).catch((error) => {
             // Обработка ошибки запроса
             console.error(error);
