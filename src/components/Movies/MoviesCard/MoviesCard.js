@@ -56,7 +56,7 @@ function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedM
                                     <a href={movie.trailerLink} target="_blank" className="card__link">{movie.nameRU}</a>
                                 </h5>
                                 <time className="card__time">
-                                    {`${Math.round(movie.duration / 60)}ч ${movie.duration % 60}м`}
+                                    {`${Math.floor(movie.duration / 60)}ч ${movie.duration % 60}м`}
                                 </time>
                             </div>
                             { savedMode ?

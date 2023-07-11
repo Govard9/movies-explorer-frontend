@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import header__logo from "../../images/logo/header__logo.svg";
 import { Link } from "react-router-dom";
+import validator from 'validator';
 
-function Register(props) {
+function Register({ onRegister, errorTextReg }) {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -12,14 +13,23 @@ function Register(props) {
     const [isEmailTouched, setIsEmailTouched] = useState(false);
     const [isPasswordTouched, setIsPasswordTouched] = useState(false);
 
+    const [isEmailValid, setIsEmailValid] = useState(true);
+    const [isNameValid, setIsNameValid] = useState(true);
+
     const handleNameChange = (event) => {
-        setName(event.target.value);
+        const nameValue = event.target.value;
+        setName(nameValue);
         setIsNameTouched(true);
+
+        const isValidName = /^[\wа-яА-ЯёЁ\s-]+$/.test(nameValue);
+        setIsNameValid(isValidName);
     };
 
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+        const emailValue = event.target.value;
+        setEmail(emailValue);
         setIsEmailTouched(true);
+        setIsEmailValid(validator.isEmail(emailValue));
     };
 
     const handlePasswordChange = (event) => {
@@ -30,9 +40,21 @@ function Register(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        onRegister({
+            name: name,
+            email: email,
+            password: password
+        })
     };
 
-    const isButtonDisabled = name.trim() === '' || email.trim() === '' || password.trim() === '';
+    const isButtonDisabled =
+        name.trim() === '' ||
+        email.trim() === '' ||
+        password.trim() === '' ||
+        !isEmailValid || !isNameValid ||
+        name.length < 5 || name.length > 35 ||
+        email.length < 10 || email.length > 50 ||
+        password.length < 8 || password.length > 50
 
     return (
         <section className="register">
@@ -52,34 +74,64 @@ function Register(props) {
                 <input
                     type="text"
                     className="register__input"
-                    minLength="5"
-                    maxLength="35"
                     onChange={handleNameChange}
                 />
-                {isNameTouched && name.trim() === '' && <span className="register__span-validation">Поле обязательно для заполнения</span>}
+                {isNameTouched && name.trim() === ''
+                    ?
+                    <span className="register__span-validation">Поле обязательно для заполнения</span>
+                    :
+                    !isNameValid && isNameTouched ? <span className="register__span-validation">Поле должно содержать только латиницу, кириллицу, пробел или дефис.</span>
+                    :
+                    isNameTouched && name.length < 5 ? <span className="register__span-validation">Поле должно содержать от 5 до 35 символов</span>
+                    :
+                    isNameTouched && name.length > 35 && <span className="register__span-validation">Поле должно содержать от 5 до 35 символов</span>
+                }
 
                 <label className="register__label">E-mail</label>
                 <input
                     type="email"
                     className="register__input"
-                    minLength="5"
-                    maxLength="254"
                     required
                     onChange={handleEmailChange}
                 />
-                {isEmailTouched && email.trim() === '' && <span className="register__span-validation">Поле обязательно для заполнения</span>}
+                {
+                    isEmailTouched && email.trim() === ''
+                    ?
+                    <span className="register__span-validation">Поле обязательно для заполнения</span>
+                    :
+                    !isEmailValid && isEmailTouched
+                    ?
+                    <span className="register__span-validation">Некорректный адрес электронной почты</span>
+                    :
+                    isEmailTouched && email.length < 10 ?
+                    <span className="register__span-validation">Поле должно содержать от 10 до 50 символов</span>
+                    :
+                    email.length > 50 &&
+                    <span className="register__span-validation">Поле должно содержать от 10 до 50 символов</span>
+                }
 
                 <label className="register__label">Пароль</label>
                 <input
                     type="password"
                     className="register__input register__input_pass-red"
-                    minLength="8"
-                    maxLength="50"
                     required
                     onChange={handlePasswordChange}
                 />
-                {isPasswordTouched && password.trim() === '' && <span className="register__span-validation">Поле обязательно для заполнения</span>}
+                {
+                    isPasswordTouched && password.trim() === ''
+                    ?
+                    <span className="register__span-validation">Поле обязательно для заполнения</span>
+                    :
+                    isPasswordTouched && password.length < 8
+                    ?
+                    <span className="register__span-validation">Поле должно содержать от 8 до 50 символов</span>
+                    :
+                    password.length > 50
+                    &&
+                    <span className="register__span-validation">Поле должно содержать от 8 до 50 символов</span>
+                }
 
+                <span className="register__span-validation register__span-validation_button">{errorTextReg}</span>
                 <button className={`register__button ${isButtonDisabled && "register__button_disabled"}`} disabled={isButtonDisabled}>Зарегистрироваться</button>
             </form>
             <div className="register__login-block">

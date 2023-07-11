@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import Main from '../Main/Main';
 import Error404 from '../404/Error404';
 import Movies from '../Movies/Movies';
@@ -10,13 +10,104 @@ import Register from '../Register/Register';
 import moviesApi from "../../utils/MoviesApi";
 import {useEffect, useState} from "react";
 import mainApi from "../../utils/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import Header from "../Header/Header";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
+
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [currentUser, setCurrentUser] = useState({});
 
     const [movies, setMovies] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [errorMovies, setErrorMovies] = useState('');
     const [isFirstRender, setIsFirstRender] = useState('');
+
+    const [errorTextAuth, setErrorTextAuth] = useState('');
+    const [errorTextReg, setErrorTextReg] = useState('');
+    const [errorTextProfile, setErrorTextProfile] = useState('');
+
+    const [popupTooltipOpen, setPopupTooltipOpen] = useState(false);
+
+    const navigate = useNavigate();
+
+    const onRegister = ({ name, email, password }) => {
+        mainApi.register({ name, email, password })
+            .then(() => {
+                return mainApi.authorization({ email, password });
+            })
+            .then(() => {
+                setLoggedIn(true);
+                navigate('/movies');
+            })
+            .catch((err) => {
+                console.log(err);
+                setErrorTextReg(`На сервере произошла ${err.toLowerCase()}`);
+            });
+    };
+
+    function onAuthorization({ email, password }) {
+        mainApi.authorization({ email, password }).then((res) => {
+            setLoggedIn(true);
+            navigate('/movies');
+        }).catch((err) => {
+            console.log(err);
+            setErrorTextAuth(`На сервере произошла ${err.toLowerCase()}`)
+        });
+    }
+
+    function signOut() {
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+        navigate('/');
+    }
+
+    useEffect(() => {
+        loggedIn && mainApi.getUserInfoProfile()
+            .then(({ name, email }) => {
+                setCurrentUser({ name, email });
+            }).catch((err) => {
+            console.log(err);
+        })
+    }, [loggedIn])
+
+    const handleUpdateUser = (data) => {
+        mainApi.updateEditProfile(data)
+            .then(res => {
+                if (res) {
+                    setCurrentUser(res);
+                    setPopupTooltipOpen(true)
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                setErrorTextProfile(`На сервере произошла ${err.toLowerCase()}`);
+            });
+    };
+
+    const handleLogin = () => {
+        setLoggedIn(true);
+    }
+
+    const tokenCheck = () => {
+        if (localStorage.getItem('token')) {
+            const jwt = localStorage.getItem('token');
+            mainApi.getCheckToken(jwt).then((res) => {
+                if (res) {
+                    handleLogin();
+                    navigate("/", {replace: true});
+                }
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+    }
+
+    useEffect(() => {
+        tokenCheck();
+    }, [])
 
     const handleUpdateSearch = (results) => {
         console.log(results)
@@ -54,42 +145,78 @@ function App() {
             });
     }
 
-    const handleClickDeleteFilm = (index) => {
-        mainApi.deleteFilm(movies[index])
-            .then((response) => {
-                console.log(response);
-                const updatedMovies = [...movies];
-                updatedMovies.splice(index, 1);
-                setMovies(updatedMovies);
-            }).catch((error) => {
-            // Обработка ошибки запроса
-            console.error(error);
-        });
-    }
-
     return (
-        <Routes>
-            <Route path="/" element={<Main/>}/>
-            <Route path="/movies" element={<Movies
-                movies={movies}
-                onUpdateMovies={handleUpdateSearch}
-                isLoading={isLoading}
-                errorMovies={errorMovies}
-                isFirstRender={isFirstRender}
-                setMovies={setMovies}
-            />}/>
-            <Route path="/saved-movies" element={<SavedMovies
-                onUpdateMovies={handleUpdateSearch}
-                isLoading={isLoading}
-                errorMovies={errorMovies}
-                isFirstRender={isFirstRender}
-                setMovies={setMovies}
-            />}/>
-            <Route path="/profile" element={<Profile/>}/>
+        <CurrentUserContext.Provider value={currentUser}>
+            <Header loggedIn={loggedIn} signOut={signOut} />
 
-            <Route path="/signin" element={<Login/>}/>
-            <Route path="/signup" element={<Register/>}/>
-        </Routes>
+            <Routes>
+
+                <Route path="/signin" element={
+                    <Login
+                        onAuthorization={onAuthorization}
+                        errorTextAuth={errorTextAuth}
+                    />}/>
+
+                <Route path="/signup" element={
+                    <Register
+                        onRegister={onRegister}
+                        errorTextReg={errorTextReg}
+                    />}/>
+
+                <Route path="/" element={<Main/>}/>
+
+                <Route
+                    path="/movies"
+                    element={
+                        <ProtectedRoute
+                            loggedIn={loggedIn}
+                            component={Movies}
+                            movies={movies}
+                            onUpdateMovies={handleUpdateSearch}
+                            isLoading={isLoading}
+                            errorMovies={errorMovies}
+                            isFirstRender={isFirstRender}
+                            setMovies={setMovies}
+                        />
+                    }
+                />
+
+                <Route
+                    path="/saved-movies"
+                    element={
+                        <ProtectedRoute
+                            loggedIn={loggedIn}
+                            component={SavedMovies}
+                            onUpdateMovies={handleUpdateSearch}
+                            isLoading={isLoading}
+                            errorMovies={errorMovies}
+                            isFirstRender={isFirstRender}
+                            setMovies={setMovies}
+                        />
+                    }
+                />
+
+                <Route
+                    path="/profile"
+                    element={
+                        <ProtectedRoute
+                            loggedIn={loggedIn}
+                            component={Profile}
+                            handleUpdateUser={handleUpdateUser}
+                            errorTextProfile={errorTextProfile}
+                            popupTooltipOpen={popupTooltipOpen}
+                            setPopupTooltipOpen={setPopupTooltipOpen}
+                            setErrorTextProfile={setErrorTextProfile}
+                            signOut={signOut}
+                        />
+                    }
+                />
+
+            </Routes>
+
+            <InfoTooltip />
+
+        </CurrentUserContext.Provider>
     );
 }
 

@@ -3,7 +3,7 @@ import header__logo from '../../images/logo/header__logo.svg';
 import Navigation from '../Navigation/Navigation';
 import {Link, useLocation} from "react-router-dom";
 
-function Header(props) {
+function Header({ loggedIn, signOut }) {
     const { pathname } = useLocation();
 
     return (
@@ -13,7 +13,7 @@ function Header(props) {
                 <img src={header__logo} alt=" Многогранный зеленый круг." className="header__logo"/>
                 <Link to="/" className="header__link-img"/>
             </div>
-            <Navigation />
+            <Navigation loggedIn={loggedIn} signOut={signOut} />
         </header>
     );
 }

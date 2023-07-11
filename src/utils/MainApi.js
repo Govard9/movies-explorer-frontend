@@ -11,10 +11,93 @@ export class MainApi {
         return Promise.reject(`Ошибка: ${res.status}`);
     }
 
+    register({ name, email, password }) {
+        return fetch(`${this._url}/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            }),
+        })
+            .then(this.checkResponse)
+            .then((data) => {
+                return data;
+            });
+    }
+
+    authorization({ email, password }) {
+        return fetch(`${this._url}/signin`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+        })
+            .then(this.checkResponse)
+            .then((data) => {
+                if (data._id) {
+                    localStorage.setItem('token', data._id);
+                    return data;
+                }
+            });
+    }
+
+    getUserInfoProfile() {
+        return fetch(`${this._url}/users/me`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json"
+            },
+        })
+            .then(this.checkResponse)
+            .then((result) => {
+                return result;
+            });
+    }
+
+    updateEditProfile(data) {
+        return fetch(`${this._url}/users/me`, {
+            method: 'PATCH',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: data.name,
+                email: data.email,
+            }),
+        })
+            .then(this.checkResponse)
+            .then((data) => {
+                return data;
+            });
+    }
+
+    getCheckToken(token) {
+        return fetch(`${this._url}/users/me`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(this.checkResponse)
+            .then((result) => {
+                return result;
+            });
+    }
+
     getSavedFilms() {
         return fetch(`${this._url}/movies`, {
             headers: {
-                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDg1YzlmN2JkMjkzOGM3MjBkMzczYzkiLCJpYXQiOjE2ODg0NDg4MTIsImV4cCI6MTY4OTA1MzYxMn0.X-rXH33hHj-oVdQT8pcPFlbE4nR7xe5axf-8HQKh2rE`,
+                authorization: `Bearer ${localStorage.getItem('token')}`,
                 "Content-Type": "application/json"
             },
         })
@@ -26,7 +109,7 @@ export class MainApi {
         return fetch(`${this._url}/movies`, {
             method: 'POST',
             headers: {
-                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDg1YzlmN2JkMjkzOGM3MjBkMzczYzkiLCJpYXQiOjE2ODg0NDg4MTIsImV4cCI6MTY4OTA1MzYxMn0.X-rXH33hHj-oVdQT8pcPFlbE4nR7xe5axf-8HQKh2rE`,
+                authorization: `Bearer ${localStorage.getItem('token')}`,
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -53,7 +136,7 @@ export class MainApi {
         return fetch(`${this._url}/movies/${_id}`, {
             method: 'DELETE',
             headers: {
-                authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDg1YzlmN2JkMjkzOGM3MjBkMzczYzkiLCJpYXQiOjE2ODg0NDg4MTIsImV4cCI6MTY4OTA1MzYxMn0.X-rXH33hHj-oVdQT8pcPFlbE4nR7xe5axf-8HQKh2rE`,
+                authorization: `Bearer ${localStorage.getItem('token')}`,
                 "Content-Type": "application/json"
             },
         })
@@ -62,6 +145,8 @@ export class MainApi {
                 return data;
             });
     }
+
+
 
 }
 const mainApi = new MainApi(

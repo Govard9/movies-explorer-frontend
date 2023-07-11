@@ -4,7 +4,7 @@ import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
 function SearchForm({ onUpdateMovies }) {
 
-    const [resultSearch, setResultSearch] = useState(localStorage.getItem('searchFilm'))
+    const [resultSearch, setResultSearch] = useState(() => localStorage.getItem('searchFilm') || '')
     const [error, setError] = useState('');
     const [toggle, setToggle] = useState(JSON.parse(localStorage.getItem('toggle')));
 

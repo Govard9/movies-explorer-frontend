@@ -1,17 +1,17 @@
 .profile {
-    height: 100vh;
-    margin: 0 auto;
+    height: 81.8vh;
+    padding: 102px 0 0 0;
     background: #202020;
 }
 
 .profile__title {
-    margin: 74px 0 0 0;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
     text-align: center;
     color: #FFFFFF;
+    margin: 0;
 }
 
 .profile__block-info {
@@ -24,6 +24,7 @@
 .profile__name {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     font-style: normal;
     font-weight: 500;
     font-size: 11px;
@@ -43,6 +44,18 @@
     font-size: 11px;
     line-height: 13px;
     color: #FFFFFF;
+}
+
+.profile__block-input-name {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
+
+.profile__block-input-email {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .profile__text-info {
