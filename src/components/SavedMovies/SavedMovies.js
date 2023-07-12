@@ -18,6 +18,21 @@ function SavedMovies({ onUpdateMovies, isLoading, errorMovies, isFirstRender }) 
             })
     }, [])
 
+    // const searchSaveFilm = (resultSearch) => {
+    //     mainApi.getSavedFilms()
+    //         .then((response) => {
+    //             const newArrMovies = [];
+    //
+    //             response.map((movie) => {
+    //                 if (movie.nameRU.toLowerCase().includes(resultSearch)) {
+    //                     newArrMovies.push(movie)
+    //                 }
+    //             })
+    //             setMovies(newArrMovies);
+    //             setSavedMode(true)
+    //         })
+    // }
+
     const handleClickDeleteFilm = (index) => {
         mainApi.deleteFilm(movies[index]._id)
             .then((response) => {
@@ -43,7 +58,7 @@ function SavedMovies({ onUpdateMovies, isLoading, errorMovies, isFirstRender }) 
     return (
         <>
             <main className="content">
-                <SearchForm onUpdateMovies={onUpdateMovies} />
+                <SearchForm onUpdateMovies={onUpdateMovies} movies={movies} savedMode={savedMode} />
                 { isLoading ?
                     <Preloader />
                     :

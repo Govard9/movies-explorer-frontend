@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import mainApi from "../../../utils/MainApi";
 
-function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedMode, handleClickDeleteFilm }) {
+function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMode, handleClickDeleteFilm}) {
     const [activeSave, setActiveSave] = useState([]);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedM
 
                     // Обновить локальное хранилище с сохраненными фильмами
                     const savedFilms = JSON.parse(localStorage.getItem('savedFilms')) || [];
-                    const updatedFilms = [...savedFilms, { id: filmId, deleteFilmId: savedFilmId }];
+                    const updatedFilms = [...savedFilms, {id: filmId, deleteFilmId: savedFilmId}];
                     localStorage.setItem('savedFilms', JSON.stringify(updatedFilms));
                 })
                 .catch((error) => {
@@ -73,41 +73,80 @@ function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedM
 
             {movies.length > 0 && (
                 movies.map((movie, index) => (
-                    index <= indexPlusSeven &&
-                    <article className="card" key={movie.id}>
-                        <div className="card__block">
-                            <div className="card__block-text">
-                                <h5 className="card__title">
-                                    <a href={movie.trailerLink} target="_blank" className="card__link">{movie.nameRU}</a>
-                                </h5>
-                                <time className="card__time">
-                                    {`${Math.floor(movie.duration / 60)}ч ${movie.duration % 60}м`}
-                                </time>
+                    savedMode ? <article className="card" key={movie.movieId}>
+                            <div className="card__block">
+                                <div className="card__block-text">
+                                    <h5 className="card__title">
+                                        <a href={movie.trailerLink} target="_blank"
+                                           className="card__link">{movie.nameRU}</a>
+                                    </h5>
+                                    <time className="card__time">
+                                        {`${Math.floor(movie.duration / 60)}ч ${movie.duration % 60}м`}
+                                    </time>
+                                </div>
+                                {savedMode ?
+                                    <button
+                                        className="card__delete-film"
+                                        aria-label="удалить фильм из сохранённых"
+                                        type="button"
+                                        onClick={() => handleClickDeleteFilm(index)}
+                                    ></button>
+                                    :
+                                    <button
+                                        className={`card__saved-film ${activeSave[index] && "card__saved-film_active"}`}
+                                        aria-label="сохранить фильм"
+                                        type="button"
+                                        onClick={() => handleClickSaveFilm(index)}
+                                    ></button>
+                                }
                             </div>
-                            {savedMode ?
-                                <button
-                                    className="card__delete-film"
-                                    aria-label="удалить фильм из сохранённых"
-                                    type="button"
-                                    onClick={() => handleClickDeleteFilm(index)}
-                                ></button>
-                                :
-                                <button
-                                    className={`card__saved-film ${activeSave[index] && "card__saved-film_active"}`}
-                                    aria-label="сохранить фильм"
-                                    type="button"
-                                    onClick={() => handleClickSaveFilm(index)}
-                                ></button>
-                            }
-                        </div>
-                        <a href={movie.trailerLink} target="_blank" className="card__image-link">
-                            {savedMode ?
-                                <img src={movie.image} alt={movie.nameRU} className="card__image" />
-                                :
-                                <img src={`https://api.nomoreparties.co${movie.image.url}`} alt={movie.nameRU} className="card__image" />
-                            }
-                        </a>
-                    </article>
+                            <a href={movie.trailerLink} target="_blank" className="card__image-link">
+                                {savedMode ?
+                                    <img src={movie.image} alt={movie.nameRU} className="card__image"/>
+                                    :
+                                    <img src={`https://api.nomoreparties.co${movie.image.url}`} alt={movie.nameRU}
+                                         className="card__image"/>
+                                }
+                            </a>
+                        </article>
+                        :
+                        index <= indexPlusSeven &&
+                        <article className="card" key={movie.id}>
+                            <div className="card__block">
+                                <div className="card__block-text">
+                                    <h5 className="card__title">
+                                        <a href={movie.trailerLink} target="_blank"
+                                           className="card__link">{movie.nameRU}</a>
+                                    </h5>
+                                    <time className="card__time">
+                                        {`${Math.floor(movie.duration / 60)}ч ${movie.duration % 60}м`}
+                                    </time>
+                                </div>
+                                {savedMode ?
+                                    <button
+                                        className="card__delete-film"
+                                        aria-label="удалить фильм из сохранённых"
+                                        type="button"
+                                        onClick={() => handleClickDeleteFilm(index)}
+                                    ></button>
+                                    :
+                                    <button
+                                        className={`card__saved-film ${activeSave[index] && "card__saved-film_active"}`}
+                                        aria-label="сохранить фильм"
+                                        type="button"
+                                        onClick={() => handleClickSaveFilm(index)}
+                                    ></button>
+                                }
+                            </div>
+                            <a href={movie.trailerLink} target="_blank" className="card__image-link">
+                                {savedMode ?
+                                    <img src={movie.image} alt={movie.nameRU} className="card__image"/>
+                                    :
+                                    <img src={`https://api.nomoreparties.co${movie.image.url}`} alt={movie.nameRU}
+                                         className="card__image"/>
+                                }
+                            </a>
+                        </article>
                 ))
             )}
         </>

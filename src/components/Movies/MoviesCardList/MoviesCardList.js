@@ -58,11 +58,10 @@ function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleC
                 savedMode={savedMode}
                 handleClickDeleteFilm={handleClickDeleteFilm}
             />
-            { movies.length > indexPlusSeven &&
+            { savedMode ? "" : movies.length > indexPlusSeven &&
                 <div className={`cards__block-more ${movies.length < indexPlusSeven && "cards__block-more_inactive"}`}>
                     <button className="cards__button" onClick={handleMoreCardMovies}>Ещё</button>
-                </div>
-            }
+                </div> }
         </section>
     );
 }

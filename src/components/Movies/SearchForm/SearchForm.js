@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import search_image from '../../../images/icon/search-form__search-image.svg';
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onUpdateMovies }) {
+function SearchForm({ onUpdateMovies, movies, savedMode }) {
 
     const [resultSearch, setResultSearch] = useState(() => localStorage.getItem('searchFilm') || '')
     const [error, setError] = useState('');
