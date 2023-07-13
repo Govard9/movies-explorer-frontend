@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import search_image from '../../../images/icon/search-form__search-image.svg';
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ onUpdateMovies, movies, savedMode }) {
+function SearchForm({ onUpdateMovies, onUpdateMoviesSaved, movies, savedMode }) {
 
     const [resultSearch, setResultSearch] = useState(() => localStorage.getItem('searchFilm') || '')
     const [error, setError] = useState('');
-    const [toggle, setToggle] = useState(JSON.parse(localStorage.getItem('toggle')));
+    const [toggle, setToggle] = useState(JSON.parse(localStorage.getItem('toggle')) || false);
 
     function handleSearchValue(e) {
         setResultSearch(e.target.value);
@@ -28,11 +28,18 @@ function SearchForm({ onUpdateMovies, movies, savedMode }) {
         }
         setError('');
 
-        // Передаём значения управляемых компонентов во внешний обработчик
-        onUpdateMovies({
-            film: resultSearch,
-            toggle: toggle
-        });
+        if (savedMode) {
+            onUpdateMoviesSaved({
+                film: resultSearch,
+                toggle: toggle
+            });
+        } else {
+            onUpdateMovies({
+                film: resultSearch,
+                toggle: toggle
+            });
+        }
+
     }
 
     return (

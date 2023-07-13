@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Routes, useNavigate} from "react-router-dom";
+import {Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import Main from '../Main/Main';
 import Error404 from '../404/Error404';
 import Movies from '../Movies/Movies';
@@ -31,6 +31,7 @@ function App() {
 
     const [popupTooltipOpen, setPopupTooltipOpen] = useState(false);
 
+    const location = useLocation();
     const navigate = useNavigate();
 
     const onRegister = ({ name, email, password }) => {
@@ -97,7 +98,6 @@ function App() {
             mainApi.getCheckToken(jwt).then((res) => {
                 if (res) {
                     handleLogin();
-                    navigate("/", {replace: true});
                 }
             }).catch((err) => {
                 console.log(err);
@@ -109,7 +109,7 @@ function App() {
         tokenCheck();
     }, [])
 
-    const handleUpdateSearch = (results) => {
+    const handleUpdateSearchAllMovies = (results) => {
         console.log(results)
         setIsLoading(true);
 
@@ -147,7 +147,19 @@ function App() {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-            <Header loggedIn={loggedIn} signOut={signOut} />
+
+            {
+                location.pathname === '/' ||
+                location.pathname === '/movies' ||
+                location.pathname === '/saved-movies' ||
+                location.pathname === '/profile'
+                    ?
+                <Header loggedIn={loggedIn} signOut={signOut} />
+                    :
+                ''
+            }
+
+            <InfoTooltip />
 
             <Routes>
 
@@ -165,6 +177,7 @@ function App() {
 
                 <Route path="/" element={<Main/>}/>
 
+
                 <Route
                     path="/movies"
                     element={
@@ -172,7 +185,7 @@ function App() {
                             loggedIn={loggedIn}
                             component={Movies}
                             movies={movies}
-                            onUpdateMovies={handleUpdateSearch}
+                            onUpdateMovies={handleUpdateSearchAllMovies}
                             isLoading={isLoading}
                             errorMovies={errorMovies}
                             isFirstRender={isFirstRender}
@@ -187,11 +200,13 @@ function App() {
                         <ProtectedRoute
                             loggedIn={loggedIn}
                             component={SavedMovies}
-                            onUpdateMovies={handleUpdateSearch}
                             isLoading={isLoading}
                             errorMovies={errorMovies}
                             isFirstRender={isFirstRender}
                             setMovies={setMovies}
+                            movies={movies}
+                            setIsLoading={setIsLoading}
+                            setIsFirstRender={setIsFirstRender}
                         />
                     }
                 />
@@ -212,9 +227,9 @@ function App() {
                     }
                 />
 
-            </Routes>
+                <Route path="*" element={<Error404 />} />
 
-            <InfoTooltip />
+            </Routes>
 
         </CurrentUserContext.Provider>
     );

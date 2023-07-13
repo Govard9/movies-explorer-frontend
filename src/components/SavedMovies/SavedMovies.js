@@ -5,45 +5,81 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Movies/Preloader/Preloader";
 import mainApi from "../../utils/MainApi";
 
-function SavedMovies({ onUpdateMovies, isLoading, errorMovies, isFirstRender }) {
+function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setIsFirstRender }) {
 
-    const [movies, setMovies] = useState([]);
     const [savedMode, setSavedMode] = useState(false);
+    const [saveMovies, setSaveMovies] = useState([]);
+
+    const [filterSavedMovies, setFilterSavedMovies] = useState([]);
+    console.log(saveMovies)
 
     useEffect(() => {
         mainApi.getSavedFilms()
             .then((response) => {
-                setMovies(response)
+                setSaveMovies(response)
+                setFilterSavedMovies(response)
                 setSavedMode(true)
-            })
+                setIsFirstRender('')
+            }).catch((err) => {
+            console.log(err);
+        });
     }, [])
 
-    // const searchSaveFilm = (resultSearch) => {
-    //     mainApi.getSavedFilms()
-    //         .then((response) => {
-    //             const newArrMovies = [];
-    //
-    //             response.map((movie) => {
-    //                 if (movie.nameRU.toLowerCase().includes(resultSearch)) {
-    //                     newArrMovies.push(movie)
-    //                 }
-    //             })
-    //             setMovies(newArrMovies);
-    //             setSavedMode(true)
-    //         })
-    // }
+    useEffect(() => {
+        // При монтировании компонента извлекаем данные из локального хранилища
+        const savedMovies = localStorage.getItem("moviesSaved");
+        const savedSearchFilm = localStorage.getItem("searchFilm");
+        const savedToggle = localStorage.getItem("toggle");
+
+        // Проверяем, есть ли сохраненные данные в локальном хранилище
+        if (savedMovies && savedSearchFilm && savedToggle) {
+            const parsedMovies = JSON.parse(savedMovies);
+            const parsedToggle = JSON.parse(savedToggle);
+
+            // Обновляем состояния компонента
+            handleUpdateSearchSavedMovies({film: savedSearchFilm, toggle: parsedToggle});
+            setSaveMovies(parsedMovies);
+        }
+    }, [savedMode])
+
+    const handleUpdateSearchSavedMovies = (results) => {
+        console.log(results);
+        setIsLoading(true);
+        setTimeout(() => {
+            if (results.toggle) {
+                const filteredMovies = saveMovies.filter((mov) =>
+                    mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40
+                );
+                localStorage.setItem('moviesSavedFilter', JSON.stringify(filteredMovies));
+                setFilterSavedMovies(filteredMovies)
+                setIsFirstRender('Ничего не найдено.')
+            } else {
+                const filteredMovies = saveMovies.filter((mov) =>
+                    mov.nameRU.toLowerCase().includes(results.film.toLowerCase())
+                );
+                localStorage.setItem('moviesSavedFilter', JSON.stringify(filteredMovies));
+                setFilterSavedMovies(filteredMovies)
+                setIsFirstRender('Ничего не найдено.')
+            }
+
+            setIsLoading(false);
+            localStorage.setItem('searchFilm', results.film);
+            localStorage.setItem('toggle', results.toggle);
+        }, 2000)
+    };
 
     const handleClickDeleteFilm = (index) => {
-        mainApi.deleteFilm(movies[index]._id)
-            .then((response) => {
 
-                const film = movies[index];
+        mainApi.deleteFilm(filterSavedMovies[index]._id)
+            .then((response) => {
+                const film = filterSavedMovies[index];
                 const filmId = film.movieId;
 
                 console.log(response);
-                const updatedMovies = [...movies];
+                const updatedMovies = [...saveMovies];
                 updatedMovies.splice(index, 1);
-                setMovies(updatedMovies);
+                setSaveMovies(updatedMovies);
+                setFilterSavedMovies(updatedMovies);
 
                 // Удалить фильм из локального хранилища
                 const savedFilms = JSON.parse(localStorage.getItem('savedFilms')) || [];
@@ -58,12 +94,12 @@ function SavedMovies({ onUpdateMovies, isLoading, errorMovies, isFirstRender }) 
     return (
         <>
             <main className="content">
-                <SearchForm onUpdateMovies={onUpdateMovies} movies={movies} savedMode={savedMode} />
+                <SearchForm onUpdateMoviesSaved={handleUpdateSearchSavedMovies} movies={filterSavedMovies} savedMode={savedMode} />
                 { isLoading ?
                     <Preloader />
                     :
                     <MoviesCardList
-                        movies={movies}
+                        movies={filterSavedMovies}
                         errorMovies={errorMovies}
                         isFirstRender={isFirstRender}
                         savedMode={savedMode}

@@ -28,7 +28,7 @@ function Movies({ movies, onUpdateMovies, isLoading, errorMovies, isFirstRender,
     return (
         <>
             <main className="content">
-                <SearchForm onUpdateMovies={onUpdateMovies} />
+                <SearchForm onUpdateMovies={onUpdateMovies} movies={movies} />
                 { isLoading ? <Preloader /> : <MoviesCardList movies={movies} errorMovies={errorMovies} isFirstRender={isFirstRender} /> }
             </main>
             <Footer />
