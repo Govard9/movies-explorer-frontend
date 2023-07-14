@@ -4,7 +4,7 @@ import Preloader from "./Preloader/Preloader";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 
-function Movies({ movies, onUpdateMovies, isLoading, errorMovies, isFirstRender, setMovies }) {
+function Movies({ movies, onUpdateMovies, isLoading, errorMovies, isFirstRender, setMovies, setIsFirstRender }) {
 
     console.log(movies)
 
@@ -23,13 +23,14 @@ function Movies({ movies, onUpdateMovies, isLoading, errorMovies, isFirstRender,
             onUpdateMovies({ film: savedSearchFilm, toggle: parsedToggle });
             setMovies(parsedMovies);
         }
+
     }, []);
 
     return (
         <>
             <main className="content">
                 <SearchForm onUpdateMovies={onUpdateMovies} movies={movies} />
-                { isLoading ? <Preloader /> : <MoviesCardList movies={movies} errorMovies={errorMovies} isFirstRender={isFirstRender} /> }
+                { isLoading ? <Preloader /> : <MoviesCardList setIsFirstRender={setIsFirstRender} movies={movies} errorMovies={errorMovies} isFirstRender={isFirstRender} /> }
             </main>
             <Footer />
         </>

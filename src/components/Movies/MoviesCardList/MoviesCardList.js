@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleClickDeleteFilm }) {
+function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleClickDeleteFilm, setIsFirstRender }) {
 
     const [indexPlusSeven, setIndexPlusSeven] = useState(6);
 
@@ -53,6 +53,7 @@ function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleC
             <MoviesCard
                 movies={movies}
                 errorMovies={errorMovies}
+                setIsFirstRender={setIsFirstRender}
                 isFirstRender={isFirstRender}
                 indexPlusSeven={indexPlusSeven}
                 savedMode={savedMode}

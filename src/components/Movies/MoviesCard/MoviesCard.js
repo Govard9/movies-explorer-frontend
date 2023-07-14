@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import mainApi from "../../../utils/MainApi";
 
-function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMode, handleClickDeleteFilm}) {
+function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMode, handleClickDeleteFilm, setIsFirstRender}) {
     const [activeSave, setActiveSave] = useState([]);
 
     useEffect(() => {
@@ -11,6 +11,12 @@ function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMo
         // Создать массив состояния для активности кнопок сохранения фильма
         const initialActiveSave = movies.map((movie) => savedFilms.some((savedFilm) => savedFilm.id === movie.id));
         setActiveSave(initialActiveSave);
+        debugger
+        if (movies.length === 0) {
+            setIsFirstRender('Ничего не найдено.')
+        } else {
+            setIsFirstRender('')
+        }
     }, [movies]);
 
     const handleClickSaveFilm = (index) => {
@@ -30,15 +36,15 @@ function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMo
                     const savedFilmId = response._id;
 
                     // Обновить локальное хранилище с сохраненными фильмами
-                    const savedFilms = JSON.parse(localStorage.getItem('savedFilms')) || [];
+                    const savedFilms = JSON.parse(localStorage.getItem('savedFilmsDelete')) || [];
                     const updatedFilms = [...savedFilms, {id: filmId, deleteFilmId: savedFilmId}];
-                    localStorage.setItem('savedFilms', JSON.stringify(updatedFilms));
+                    localStorage.setItem('savedFilmsDelete', JSON.stringify(updatedFilms));
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         } else {
-            const savedFilms = JSON.parse(localStorage.getItem('savedFilms')) || [];
+            const savedFilms = JSON.parse(localStorage.getItem('savedFilmsDelete')) || [];
             const filmToDelete = savedFilms.find((film) => film.id === filmId);
 
             if (filmToDelete) {
@@ -48,7 +54,7 @@ function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMo
 
                         // Обновить локальное хранилище с сохраненными фильмами
                         const updatedFilms = savedFilms.filter((film) => film.id !== filmId);
-                        localStorage.setItem('savedFilms', JSON.stringify(updatedFilms));
+                        localStorage.setItem('savedFilmsDelete', JSON.stringify(updatedFilms));
                     })
                     .catch((error) => {
                         console.error(error);
@@ -57,7 +63,7 @@ function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMo
         }
     };
 
-    console.log(movies)
+    console.log(isFirstRender)
 
     return (
         <>
@@ -76,7 +82,7 @@ function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMo
             {movies.length > 0 && (
                 movies.map((movie, index) => (
                     savedMode ? (
-                        <article className="card" key={movie._id}>
+                        <article className="card" key={movie.movieId}>
                             <div className="card__block">
                                 <div className="card__block-text">
                                     <h5 className="card__title">

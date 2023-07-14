@@ -5,21 +5,19 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Movies/Preloader/Preloader";
 import mainApi from "../../utils/MainApi";
 
-function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setIsFirstRender }) {
+function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setIsFirstRender, savedMode }) {
 
-    const [savedMode, setSavedMode] = useState(false);
-    const [saveMovies, setSaveMovies] = useState([]);
+    const [saveMovies, setSaveMovies] = useState(JSON.parse(localStorage.getItem('savedFilms')) || []);
 
-    const [filterSavedMovies, setFilterSavedMovies] = useState([]);
-    console.log(saveMovies)
+    const [filterSavedMovies, setFilterSavedMovies] = useState(JSON.parse(localStorage.getItem('moviesSavedFilter')) || []);
+    console.log(filterSavedMovies)
 
     useEffect(() => {
         mainApi.getSavedFilms()
             .then((response) => {
                 setSaveMovies(response)
                 setFilterSavedMovies(response)
-                setSavedMode(true)
-                setIsFirstRender('')
+                localStorage.setItem('savedFilms', JSON.stringify(response))
             }).catch((err) => {
             console.log(err);
         });
@@ -27,7 +25,7 @@ function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setI
 
     useEffect(() => {
         // При монтировании компонента извлекаем данные из локального хранилища
-        const savedMovies = localStorage.getItem("moviesSaved");
+        const savedMovies = localStorage.getItem("savedFilms");
         const savedSearchFilm = localStorage.getItem("searchFilm");
         const savedToggle = localStorage.getItem("toggle");
 
@@ -52,24 +50,24 @@ function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setI
                 );
                 localStorage.setItem('moviesSavedFilter', JSON.stringify(filteredMovies));
                 setFilterSavedMovies(filteredMovies)
-                setIsFirstRender('Ничего не найдено.')
+                setIsFirstRender('Ничего не найдено.');
             } else {
                 const filteredMovies = saveMovies.filter((mov) =>
                     mov.nameRU.toLowerCase().includes(results.film.toLowerCase())
                 );
                 localStorage.setItem('moviesSavedFilter', JSON.stringify(filteredMovies));
                 setFilterSavedMovies(filteredMovies)
-                setIsFirstRender('Ничего не найдено.')
+                setIsFirstRender('Ничего не найдено.');
             }
 
             setIsLoading(false);
+
             localStorage.setItem('searchFilm', results.film);
             localStorage.setItem('toggle', results.toggle);
         }, 2000)
     };
 
     const handleClickDeleteFilm = (index) => {
-
         mainApi.deleteFilm(filterSavedMovies[index]._id)
             .then((response) => {
                 const film = filterSavedMovies[index];
@@ -82,9 +80,9 @@ function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setI
                 setFilterSavedMovies(updatedMovies);
 
                 // Удалить фильм из локального хранилища
-                const savedFilms = JSON.parse(localStorage.getItem('savedFilms')) || [];
+                const savedFilms = JSON.parse(localStorage.getItem('savedFilmsDelete')) || [];
                 const updatedFilms = savedFilms.filter((film) => film.id !== filmId);
-                localStorage.setItem('savedFilms', JSON.stringify(updatedFilms));
+                localStorage.setItem('savedFilmsDelete', JSON.stringify(updatedFilms));
             }).catch((error) => {
             // Обработка ошибки запроса
             console.error(error);
@@ -99,6 +97,7 @@ function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setI
                     <Preloader />
                     :
                     <MoviesCardList
+                        setIsFirstRender={setIsFirstRender}
                         movies={filterSavedMovies}
                         errorMovies={errorMovies}
                         isFirstRender={isFirstRender}

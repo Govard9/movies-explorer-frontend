@@ -17,7 +17,7 @@ import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
 
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn') || false);
     const [currentUser, setCurrentUser] = useState({});
 
     const [movies, setMovies] = useState([]);
@@ -31,6 +31,8 @@ function App() {
 
     const [popupTooltipOpen, setPopupTooltipOpen] = useState(false);
 
+    console.log(loggedIn, localStorage.getItem('loggedIn'))
+
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -41,6 +43,7 @@ function App() {
             })
             .then(() => {
                 setLoggedIn(true);
+                localStorage.setItem('loggedIn', true);
                 navigate('/movies');
             })
             .catch((err) => {
@@ -52,6 +55,7 @@ function App() {
     function onAuthorization({ email, password }) {
         mainApi.authorization({ email, password }).then((res) => {
             setLoggedIn(true);
+            localStorage.setItem('loggedIn', true);
             navigate('/movies');
         }).catch((err) => {
             console.log(err);
@@ -61,6 +65,7 @@ function App() {
 
     function signOut() {
         localStorage.removeItem('token');
+        localStorage.removeItem('loggedIn');
         setLoggedIn(false);
         navigate('/');
     }
@@ -190,6 +195,7 @@ function App() {
                             errorMovies={errorMovies}
                             isFirstRender={isFirstRender}
                             setMovies={setMovies}
+                            setIsFirstRender={setIsFirstRender}
                         />
                     }
                 />
@@ -207,6 +213,7 @@ function App() {
                             movies={movies}
                             setIsLoading={setIsLoading}
                             setIsFirstRender={setIsFirstRender}
+                            savedMode={true}
                         />
                     }
                 />
