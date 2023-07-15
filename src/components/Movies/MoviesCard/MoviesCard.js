@@ -11,7 +11,6 @@ function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMo
         // Создать массив состояния для активности кнопок сохранения фильма
         const initialActiveSave = movies.map((movie) => savedFilms.some((savedFilm) => savedFilm.id === movie.id));
         setActiveSave(initialActiveSave);
-        debugger
         if (movies.length === 0) {
             setIsFirstRender('Ничего не найдено.')
         } else {
@@ -62,8 +61,6 @@ function MoviesCard({movies, errorMovies, isFirstRender, indexPlusSeven, savedMo
             }
         }
     };
-
-    console.log(isFirstRender)
 
     return (
         <>

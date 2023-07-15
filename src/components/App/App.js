@@ -31,8 +31,6 @@ function App() {
 
     const [popupTooltipOpen, setPopupTooltipOpen] = useState(false);
 
-    console.log(loggedIn, localStorage.getItem('loggedIn'))
-
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -115,11 +113,9 @@ function App() {
     }, [])
 
     const handleUpdateSearchAllMovies = (results) => {
-        console.log(results)
-        setIsLoading(true);
-
         moviesApi.getResultSearch()
             .then((movie) => {
+                setIsLoading(true);
                 // setTimeout не обязателен, но я установил его для дольшей демонстрации прелоадера.
                 setTimeout(() => {
                     if (results.toggle) {
@@ -138,6 +134,7 @@ function App() {
                         setIsFirstRender('Ничего не найдено.')
                     }
                     setIsLoading(false);
+                    setErrorMovies('');
 
                     localStorage.setItem('searchFilm', results.film);
                     localStorage.setItem('toggle', results.toggle);
@@ -145,6 +142,7 @@ function App() {
             })
             .catch((err) => {
                 console.log(err);
+                setMovies([])
                 setErrorMovies('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер ' +
                     'недоступен. Подождите немного и попробуйте ещё раз')
             });

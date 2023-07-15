@@ -6,8 +6,6 @@ import Footer from "../Footer/Footer";
 
 function Movies({ movies, onUpdateMovies, isLoading, errorMovies, isFirstRender, setMovies, setIsFirstRender }) {
 
-    console.log(movies)
-
     useEffect(() => {
         // При монтировании компонента извлекаем данные из локального хранилища
         const savedMovies = localStorage.getItem("movies");

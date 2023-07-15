@@ -10,7 +10,6 @@ function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setI
     const [saveMovies, setSaveMovies] = useState(JSON.parse(localStorage.getItem('savedFilms')) || []);
 
     const [filterSavedMovies, setFilterSavedMovies] = useState(JSON.parse(localStorage.getItem('moviesSavedFilter')) || []);
-    console.log(filterSavedMovies)
 
     useEffect(() => {
         mainApi.getSavedFilms()
@@ -41,7 +40,6 @@ function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setI
     }, [savedMode])
 
     const handleUpdateSearchSavedMovies = (results) => {
-        console.log(results);
         setIsLoading(true);
         setTimeout(() => {
             if (results.toggle) {
@@ -73,7 +71,6 @@ function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setI
                 const film = filterSavedMovies[index];
                 const filmId = film.movieId;
 
-                console.log(response);
                 const updatedMovies = [...saveMovies];
                 updatedMovies.splice(index, 1);
                 setSaveMovies(updatedMovies);
