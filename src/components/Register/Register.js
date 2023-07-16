@@ -113,7 +113,7 @@ function Register({ onRegister, errorTextReg }) {
                 <label className="register__label">Пароль</label>
                 <input
                     type="password"
-                    className="register__input register__input_pass-red"
+                    className={`register__input register__input_pass-red ${!isButtonDisabled && "register__input_pass-white"}`}
                     required
                     onChange={handlePasswordChange}
                 />

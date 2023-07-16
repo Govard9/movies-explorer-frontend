@@ -20,6 +20,10 @@
     margin-left: auto;
 }
 
+.nav-menu__block-links {
+
+}
+
 .nav-menu__links_gap {
     gap: 16px;
 }

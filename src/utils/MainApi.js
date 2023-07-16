@@ -105,7 +105,6 @@ export class MainApi {
     }
 
     saveFilm(data) {
-        console.log(data)
         return fetch(`${this._url}/movies`, {
             method: 'POST',
             headers: {
@@ -150,7 +149,7 @@ export class MainApi {
 
 }
 const mainApi = new MainApi(
-    'https://api.movie-explorer.govard.nomoredomains.rocks'
+    'http://api.movie-explorer.govard.nomoredomains.rocks'
 );
 
 export default mainApi;

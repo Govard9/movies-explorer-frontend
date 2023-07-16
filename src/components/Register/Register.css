@@ -76,6 +76,10 @@
     color: #EE3465;
 }
 
+.register__input_pass-white {
+    color: #FFFFFF;
+}
+
 .register__span-validation {
     font-style: normal;
     font-weight: 400;

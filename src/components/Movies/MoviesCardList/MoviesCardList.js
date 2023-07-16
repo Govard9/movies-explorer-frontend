@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleClickDeleteFilm, setIsFirstRender }) {
+function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleClickDeleteFilm, setIsFirstRender, saveMovies }) {
 
     const [indexPlusSeven, setIndexPlusSeven] = useState(6);
-
     useEffect(() => {
         let timeoutId;
 
@@ -58,6 +57,7 @@ function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleC
                 indexPlusSeven={indexPlusSeven}
                 savedMode={savedMode}
                 handleClickDeleteFilm={handleClickDeleteFilm}
+                saveMovies={saveMovies}
             />
             { savedMode ? "" : movies.length > indexPlusSeven &&
                 <div className={`cards__block-more ${movies.length < indexPlusSeven && "cards__block-more_inactive"}`}>

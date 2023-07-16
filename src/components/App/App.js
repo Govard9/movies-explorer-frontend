@@ -62,9 +62,9 @@ function App() {
     }
 
     function signOut() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('loggedIn');
+        localStorage.clear();
         setLoggedIn(false);
+        setCurrentUser({});
         navigate('/');
     }
 
@@ -119,15 +119,17 @@ function App() {
                 // setTimeout не обязателен, но я установил его для дольшей демонстрации прелоадера.
                 setTimeout(() => {
                     if (results.toggle) {
-                        const filteredMovies = movie.filter(
-                            (mov) => mov.nameRU.includes(results.film) && mov.duration <= 40
+                        const filteredMovies = movie.filter((mov) =>
+                            mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40 ||
+                            mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40
                         );
                         localStorage.setItem('movies', JSON.stringify(filteredMovies));
                         setMovies(filteredMovies);
                         setIsFirstRender('Ничего не найдено.')
                     } else {
                         const filteredMovies = movie.filter((mov) =>
-                            mov.nameRU.includes(results.film)
+                            mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
+                            mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
                         );
                         localStorage.setItem('movies', JSON.stringify(filteredMovies));
                         setMovies(filteredMovies);
@@ -211,6 +213,7 @@ function App() {
                             movies={movies}
                             setIsLoading={setIsLoading}
                             setIsFirstRender={setIsFirstRender}
+                            setCurrentUser={setCurrentUser}
                             savedMode={true}
                         />
                     }

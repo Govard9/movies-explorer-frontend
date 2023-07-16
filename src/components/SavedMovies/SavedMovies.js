@@ -5,54 +5,56 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Movies/Preloader/Preloader";
 import mainApi from "../../utils/MainApi";
 
-function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setIsFirstRender, savedMode }) {
+function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setIsFirstRender, savedMode, setCurrentUser }) {
 
-    const [saveMovies, setSaveMovies] = useState(JSON.parse(localStorage.getItem('savedFilms')) || []);
+    const [saveMovies, setSaveMovies] = useState([]);
+    const [isRender, setIsRender] = useState(true);
 
     const [filterSavedMovies, setFilterSavedMovies] = useState(JSON.parse(localStorage.getItem('moviesSavedFilter')) || []);
 
     useEffect(() => {
-        mainApi.getSavedFilms()
-            .then((response) => {
-                setSaveMovies(response)
-                setFilterSavedMovies(response)
-                localStorage.setItem('savedFilms', JSON.stringify(response))
-            }).catch((err) => {
-            console.log(err);
-        });
-    }, [])
+        Promise.all([mainApi.getUserInfoProfile(), mainApi.getSavedFilms()])
+            .then(([currentUserInfo, moviesData]) => {
+                setSaveMovies(
+                    moviesData.filter((x) => x.owner === currentUserInfo._id)
+                );
+                setCurrentUser(currentUserInfo);
+                setIsRender(false);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
-    useEffect(() => {
         // При монтировании компонента извлекаем данные из локального хранилища
-        const savedMovies = localStorage.getItem("savedFilms");
         const savedSearchFilm = localStorage.getItem("searchFilm");
         const savedToggle = localStorage.getItem("toggle");
 
         // Проверяем, есть ли сохраненные данные в локальном хранилище
-        if (savedMovies && savedSearchFilm && savedToggle) {
-            const parsedMovies = JSON.parse(savedMovies);
+        if (savedSearchFilm && savedToggle) {
             const parsedToggle = JSON.parse(savedToggle);
 
             // Обновляем состояния компонента
             handleUpdateSearchSavedMovies({film: savedSearchFilm, toggle: parsedToggle});
-            setSaveMovies(parsedMovies);
         }
-    }, [savedMode])
+    }, [isRender])
 
     const handleUpdateSearchSavedMovies = (results) => {
         setIsLoading(true);
         setTimeout(() => {
             if (results.toggle) {
                 const filteredMovies = saveMovies.filter((mov) =>
-                    mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40
+                    mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40 ||
+                    mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40
                 );
                 localStorage.setItem('moviesSavedFilter', JSON.stringify(filteredMovies));
                 setFilterSavedMovies(filteredMovies)
                 setIsFirstRender('Ничего не найдено.');
             } else {
                 const filteredMovies = saveMovies.filter((mov) =>
-                    mov.nameRU.toLowerCase().includes(results.film.toLowerCase())
+                    mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
+                    mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
                 );
+
                 localStorage.setItem('moviesSavedFilter', JSON.stringify(filteredMovies));
                 setFilterSavedMovies(filteredMovies)
                 setIsFirstRender('Ничего не найдено.');
@@ -95,7 +97,7 @@ function SavedMovies({ isLoading, errorMovies, isFirstRender, setIsLoading, setI
                     :
                     <MoviesCardList
                         setIsFirstRender={setIsFirstRender}
-                        movies={filterSavedMovies}
+                        movies={isRender ? saveMovies : filterSavedMovies}
                         errorMovies={errorMovies}
                         isFirstRender={isFirstRender}
                         savedMode={savedMode}
