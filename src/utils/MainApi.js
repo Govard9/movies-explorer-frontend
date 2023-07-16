@@ -149,7 +149,7 @@ export class MainApi {
 
 }
 const mainApi = new MainApi(
-    'http://api.movie-explorer.govard.nomoredomains.rocks'
+    'https://api.movie-explorer.govard.nomoredomains.rocks'
 );
 
 export default mainApi;
