@@ -20,7 +20,11 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn') || false);
     const [currentUser, setCurrentUser] = useState({});
 
+    const [allMovies, setAllMovies] = useState([]);
     const [movies, setMovies] = useState([]);
+    const [saveMovies, setSaveMovies] = useState([]);
+    const [isRenderSavedFilms, setIsRenderSavedFilms] = useState(false);
+
     const [isLoading, setIsLoading] = useState(false);
     const [errorMovies, setErrorMovies] = useState('');
     const [isFirstRender, setIsFirstRender] = useState('');
@@ -112,41 +116,53 @@ function App() {
         tokenCheck();
     }, [])
 
-    const handleUpdateSearchAllMovies = (results) => {
-        moviesApi.getResultSearch()
-            .then((movie) => {
-                setIsLoading(true);
-                // setTimeout не обязателен, но я установил его для дольшей демонстрации прелоадера.
-                setTimeout(() => {
-                    if (results.toggle) {
-                        const filteredMovies = movie.filter((mov) =>
-                            mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40 ||
-                            mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40
-                        );
-                        localStorage.setItem('movies', JSON.stringify(filteredMovies));
-                        setMovies(filteredMovies);
-                        setIsFirstRender('Ничего не найдено.')
-                    } else {
-                        const filteredMovies = movie.filter((mov) =>
-                            mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
-                            mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
-                        );
-                        localStorage.setItem('movies', JSON.stringify(filteredMovies));
-                        setMovies(filteredMovies);
-                        setIsFirstRender('Ничего не найдено.')
-                    }
-                    setIsLoading(false);
-                    setErrorMovies('');
+    useEffect(() => {
+        if (loggedIn) {
+            moviesApi.getResultSearch()
+                .then((res) => {
+                    setAllMovies(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    setMovies([])
+                    setErrorMovies('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер ' +
+                        'недоступен. Подождите немного и попробуйте ещё раз')
+                });
+        }
+    }, [loggedIn]);
 
-                    localStorage.setItem('searchFilm', results.film);
-                    localStorage.setItem('toggle', results.toggle);
-                }, 2000);
+    function handleSave(movie) {
+        mainApi
+            .saveFilm(movie)
+            .then((savedMovie) => {
+                setSaveMovies((prevMovies) => [savedMovie, ...prevMovies]);
             })
-            .catch((err) => {
-                console.log(err);
-                setMovies([])
-                setErrorMovies('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер ' +
-                    'недоступен. Подождите немного и попробуйте ещё раз')
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+        Promise.all([mainApi.getUserInfoProfile(), mainApi.getSavedFilms()])
+            .then(([currentUserInfo, moviesData]) => {
+                setSaveMovies(
+                    moviesData.filter((x) => x.owner === currentUserInfo._id)
+                );
+                setCurrentUser(currentUserInfo);
+                setIsRenderSavedFilms(true);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [loggedIn])
+
+    const handleClickDeleteFilm = (movieId) => {
+        mainApi.deleteFilm(movieId)
+            .then((res) => {
+                setSaveMovies((state) => state.filter((item) => item._id !== movieId));
+            })
+            .catch((error) => {
+                console.log(error);
             });
     }
 
@@ -190,12 +206,15 @@ function App() {
                             loggedIn={loggedIn}
                             component={Movies}
                             movies={movies}
-                            onUpdateMovies={handleUpdateSearchAllMovies}
-                            isLoading={isLoading}
                             errorMovies={errorMovies}
+                            setIsLoading={setIsLoading}
+                            isLoading={isLoading}
                             isFirstRender={isFirstRender}
                             setMovies={setMovies}
                             setIsFirstRender={setIsFirstRender}
+                            handleSave={handleSave}
+                            setErrorMovies={setErrorMovies}
+                            allMovies={allMovies}
                         />
                     }
                 />
@@ -206,15 +225,20 @@ function App() {
                         <ProtectedRoute
                             loggedIn={loggedIn}
                             component={SavedMovies}
-                            isLoading={isLoading}
                             errorMovies={errorMovies}
                             isFirstRender={isFirstRender}
                             setMovies={setMovies}
                             movies={movies}
-                            setIsLoading={setIsLoading}
                             setIsFirstRender={setIsFirstRender}
+                            setIsLoading={setIsLoading}
+                            isLoading={isLoading}
                             setCurrentUser={setCurrentUser}
                             savedMode={true}
+                            saveMovies={saveMovies}
+                            handleClickDeleteFilm={handleClickDeleteFilm}
+                            isRenderSavedFilms={isRenderSavedFilms}
+                            setIsRenderSavedFilms={setIsRenderSavedFilms}
+                            allMovies={allMovies}
                         />
                     }
                 />

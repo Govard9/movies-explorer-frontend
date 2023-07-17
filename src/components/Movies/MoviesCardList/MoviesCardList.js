@@ -1,7 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleClickDeleteFilm, setIsFirstRender, saveMovies }) {
+function MoviesCardList({
+                            movies,
+                            errorMovies,
+                            isFirstRender,
+                            savedMode,
+                            handleClickDeleteFilm,
+                            setIsFirstRender,
+                            saveMovies,
+                            handleSave,
+                            allMovies
+}) {
 
     const [indexPlusSeven, setIndexPlusSeven] = useState(6);
     useEffect(() => {
@@ -58,6 +68,8 @@ function MoviesCardList({ movies, errorMovies, isFirstRender, savedMode, handleC
                 savedMode={savedMode}
                 handleClickDeleteFilm={handleClickDeleteFilm}
                 saveMovies={saveMovies}
+                handleSave={handleSave}
+                allMovies={allMovies}
             />
             { savedMode ? "" : movies.length > indexPlusSeven &&
                 <div className={`cards__block-more ${movies.length < indexPlusSeven && "cards__block-more_inactive"}`}>

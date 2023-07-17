@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import mainApi from "../../../utils/MainApi";
+import savedMovies from "../../SavedMovies/SavedMovies";
 
-function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedMode, handleClickDeleteFilm, setIsFirstRender }) {
+function MoviesCard({
+                        movies,
+                        errorMovies,
+                        isFirstRender,
+                        indexPlusSeven,
+                        savedMode,
+                        handleClickDeleteFilm,
+                        setIsFirstRender,
+                        handleSave,
+                        allMovies
+}) {
     const [activeSave, setActiveSave] = useState([]);
 
     useEffect(() => {
@@ -13,45 +24,28 @@ function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedM
         setActiveSave(initialActiveSave);
     }, [movies]);
 
-    const handleClickSaveFilm = (index) => {
-        const film = movies[index];
-        const filmId = film.id;
+    const onSaveClick = (movies) => {
+        handleSave(movies)
+    }
 
-        const updatedActiveSave = [...activeSave];
-        updatedActiveSave[index] = !updatedActiveSave[index];
-        setActiveSave(updatedActiveSave);
+    const onClickDeleteFilm = (movieId) => {
+        handleClickDeleteFilm(movieId)
+    }
 
-        if (!activeSave[index]) {
-            mainApi.saveFilm(film)
-                .then((response) => {
-                    console.log(response);
-                    const savedFilmId = response._id;
-
-                    const savedFilms = JSON.parse(localStorage.getItem('savedFilmsDelete')) || [];
-                    const updatedFilms = [...savedFilms, { id: filmId, deleteFilmId: savedFilmId }];
-                    localStorage.setItem('savedFilmsDelete', JSON.stringify(updatedFilms));
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        } else {
-            const savedFilms = JSON.parse(localStorage.getItem('savedFilmsDelete')) || [];
-            const filmToDelete = savedFilms.find((film) => film.id === filmId);
-
-            if (filmToDelete) {
-                mainApi.deleteFilm(filmToDelete.deleteFilmId)
-                    .then((response) => {
-                        console.log(response);
-
-                        const updatedFilms = savedFilms.filter((film) => film.id !== filmId);
-                        localStorage.setItem('savedFilmsDelete', JSON.stringify(updatedFilms));
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-            }
-        }
+    const handleClickSaveFilm = (movie) => {
+        onSaveClick(movie)
     };
+
+    function handleClick(movie) {
+        if (savedMode) {
+            allMovies.filter((mov) => {
+                return mov.id === movie.movieId;
+            });
+            onClickDeleteFilm(movie._id);
+        } else {
+            handleClickSaveFilm(movie);
+        }
+    }
 
     return (
         <>
@@ -86,7 +80,7 @@ function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedM
                                     className="card__delete-film"
                                     aria-label="удалить фильм из сохранённых"
                                     type="button"
-                                    onClick={() => handleClickDeleteFilm(index)}
+                                    onClick={() => handleClick(movie)}
                                 ></button>
                             </div>
                             <a href={movie.trailerLink} target="_blank" className="card__image-link">
@@ -111,7 +105,7 @@ function MoviesCard({ movies, errorMovies, isFirstRender, indexPlusSeven, savedM
                                         className={`card__saved-film ${activeSave[index] && "card__saved-film_active"}`}
                                         aria-label="сохранить фильм"
                                         type="button"
-                                        onClick={() => handleClickSaveFilm(index)}
+                                        onClick={() => handleClick(movie)}
                                     ></button>
                                 </div>
                                 <a href={movie.trailerLink} target="_blank" className="card__image-link">
