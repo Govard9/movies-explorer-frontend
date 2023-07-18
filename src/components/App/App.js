@@ -69,6 +69,9 @@ function App() {
         localStorage.clear();
         setLoggedIn(false);
         setCurrentUser({});
+        setAllMovies([]);
+        setMovies([]);
+        setSaveMovies([]);
         navigate('/');
     }
 
@@ -143,17 +146,17 @@ function App() {
     }
 
     useEffect(() => {
-        Promise.all([mainApi.getUserInfoProfile(), mainApi.getSavedFilms()])
-            .then(([currentUserInfo, moviesData]) => {
-                setSaveMovies(
-                    moviesData.filter((x) => x.owner === currentUserInfo._id)
-                );
-                setCurrentUser(currentUserInfo);
-                setIsRenderSavedFilms(true);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if (loggedIn) {
+            Promise.all([mainApi.getUserInfoProfile(), mainApi.getSavedFilms()])
+                .then(([currentUserInfo, moviesData]) => {
+                    setSaveMovies(moviesData.filter((x) => x.owner === currentUserInfo._id));
+                    setCurrentUser(currentUserInfo);
+                    setIsRenderSavedFilms(true);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     }, [loggedIn])
 
     const handleClickDeleteFilm = (movieId) => {

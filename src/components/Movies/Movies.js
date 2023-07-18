@@ -7,7 +7,6 @@ import moviesApi from "../../utils/MoviesApi";
 
 function Movies({
                     movies,
-                    onUpdateMovies,
                     errorMovies,
                     isFirstRender,
                     setMovies,
@@ -24,7 +23,7 @@ function Movies({
 
     useEffect(() => {
         // При монтировании компонента извлекаем данные из локального хранилища
-        const savedMovies = localStorage.getItem("movies");
+        const savedMovies = localStorage.getItem("filteredMovies");
         const savedSearchFilm = localStorage.getItem("searchFilm");
         const savedToggle = localStorage.getItem("toggle");
 
@@ -34,10 +33,11 @@ function Movies({
             const parsedToggle = JSON.parse(savedToggle);
 
             // Обновляем состояния компонента
-            handleUpdateSearchAllMovies({ film: savedSearchFilm, toggle: parsedToggle });
-            setMovies(parsedMovies);
+            requestAnimationFrame(() => {
+                setMovies(parsedMovies);
+                handleUpdateSearchAllMovies({ film: savedSearchFilm, toggle: parsedToggle });
+            });
         }
-
     }, []);
 
     const handleUpdateSearchAllMovies = (results) => {
@@ -56,6 +56,7 @@ function Movies({
                     mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
                 );
                 setMovies(filteredMovies);
+                localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
                 setIsFirstRender('Ничего не найдено.');
             }
             setIsLoading(false);

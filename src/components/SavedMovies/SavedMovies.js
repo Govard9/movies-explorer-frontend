@@ -17,17 +17,13 @@ function SavedMovies({
                          allMovies
 }) {
 
-    const [filterSavedMovies, setFilterSavedMovies] = useState(JSON.parse(localStorage.getItem('moviesSavedFilter')) || []);
+    const [filterSavedMovies, setFilterSavedMovies] = useState([]);
 
     const [isLoading, setIsLoading] = useState(false);
 
-    // useEffect(() => {
-    //     if (saveMovies.length === 0) {
-    //         setIsFirstRender('Ничего не найдено');
-    //     } else {
-    //         setIsFirstRender('');
-    //     }
-    // }, [filterSavedMovies]);
+    useEffect(() => {
+        setFilterSavedMovies(saveMovies);
+    }, [saveMovies]);
 
     const handleUpdateSearchSavedMovies = (results) => {
         setIsLoading(true);

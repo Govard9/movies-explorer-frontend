@@ -10,7 +10,8 @@ function MoviesCardList({
                             setIsFirstRender,
                             saveMovies,
                             handleSave,
-                            allMovies
+                            allMovies,
+                            setMovies
 }) {
 
     const [indexPlusSeven, setIndexPlusSeven] = useState(6);
