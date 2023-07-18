@@ -215,6 +215,8 @@ function App() {
                             handleSave={handleSave}
                             setErrorMovies={setErrorMovies}
                             allMovies={allMovies}
+                            saveMovies={saveMovies}
+                            handleClickDeleteFilm={handleClickDeleteFilm}
                         />
                     }
                 />

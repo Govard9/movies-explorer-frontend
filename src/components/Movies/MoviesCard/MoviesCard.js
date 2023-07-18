@@ -11,41 +11,42 @@ function MoviesCard({
                         handleClickDeleteFilm,
                         setIsFirstRender,
                         handleSave,
-                        allMovies
-}) {
-    const [activeSave, setActiveSave] = useState([]);
+                        allMovies,
+                        saveMovies
+                    }) {
+    const [savedMoviesIds, setSavedMoviesIds] = useState([]);
 
     useEffect(() => {
-        const savedFilms = JSON.parse(localStorage.getItem('savedFilmsDelete')) || [];
+        if (saveMovies) {
+            const savedMoviesIds = saveMovies.map((movie) => movie.movieId);
+            setSavedMoviesIds(savedMoviesIds);
+        }
+    }, [saveMovies]);
 
-        const initialActiveSave = movies.map((movie) =>
-            savedFilms.some((savedFilm) => savedFilm.id === movie.id)
-        );
-        setActiveSave(initialActiveSave);
-    }, [movies]);
-
-    const onSaveClick = (movies) => {
-        handleSave(movies)
-    }
-
-    const onClickDeleteFilm = (movieId) => {
-        handleClickDeleteFilm(movieId)
-    }
-
-    const handleClickSaveFilm = (movie) => {
-        onSaveClick(movie)
+    const onSaveClick = (movie) => {
+        handleSave(movie);
     };
 
-    function handleClick(movie) {
-        if (savedMode) {
-            allMovies.filter((mov) => {
-                return mov.id === movie.movieId;
+    const onClickDeleteFilm = (movieId) => {
+        handleClickDeleteFilm(movieId);
+    };
+
+    const handleClick = (movie) => {
+        if (saveMovies.find((savedMov) => savedMov.movieId === movie.id)) {
+            const movieDel = saveMovies.filter((mov) => {
+                return movie.id === mov.movieId;
             });
+            onClickDeleteFilm(movieDel[0]._id);
+        } else if (savedMode) {
             onClickDeleteFilm(movie._id);
         } else {
-            handleClickSaveFilm(movie);
+            onSaveClick(movie);
         }
-    }
+    };
+
+    const isMovieSaved = (movieId) => {
+        return savedMoviesIds.includes(movieId);
+    };
 
     return (
         <>
@@ -102,8 +103,8 @@ function MoviesCard({
                                         </time>
                                     </div>
                                     <button
-                                        className={`card__saved-film ${activeSave[index] && "card__saved-film_active"}`}
-                                        aria-label="сохранить фильм"
+                                        className={`card__saved-film ${isMovieSaved(movie.id) ? "card__saved-film_active" : ""}`}
+                                        aria-label={isMovieSaved(movie.id) ? "удалить фильм из сохранённых" : "сохранить фильм"}
                                         type="button"
                                         onClick={() => handleClick(movie)}
                                     ></button>

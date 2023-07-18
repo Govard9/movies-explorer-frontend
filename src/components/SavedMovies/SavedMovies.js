@@ -69,6 +69,7 @@ function SavedMovies({
                         savedMode={savedMode}
                         handleClickDeleteFilm={handleClickDeleteFilm}
                         allMovies={allMovies}
+                        saveMovies={saveMovies}
                     /> }
             </main>
             <Footer />

@@ -17,7 +17,9 @@ function Movies({
                     setErrorMovies,
                     setIsLoading,
                     isLoading,
-                    allMovies
+                    allMovies,
+                    saveMovies,
+                    handleClickDeleteFilm
 }) {
 
     useEffect(() => {
@@ -77,6 +79,9 @@ function Movies({
                         errorMovies={errorMovies}
                         isFirstRender={isFirstRender}
                         handleSave={handleSave}
+                        saveMovies={saveMovies}
+                        allMovies={allMovies}
+                        handleClickDeleteFilm={handleClickDeleteFilm}
                     /> }
             </main>
             <Footer />
