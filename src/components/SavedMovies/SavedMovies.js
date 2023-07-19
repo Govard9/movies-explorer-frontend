@@ -21,10 +21,6 @@ function SavedMovies({
 
     const [isLoading, setIsLoading] = useState(false);
 
-    useEffect(() => {
-        setFilterSavedMovies(saveMovies);
-    }, [saveMovies]);
-
     const handleUpdateSearchSavedMovies = (results) => {
         setIsLoading(true);
         setTimeout(() => {

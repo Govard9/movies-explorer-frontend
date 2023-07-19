@@ -37,25 +37,28 @@ function Profile({handleUpdateUser, errorTextProfile, popupTooltipOpen, setPopup
     const handleUpdateProfile = (event) => {
         event.preventDefault();
 
-        handleUpdateUser({
-            name: name,
-            email: email
-        })
+        if (currentUser.name !== name || currentUser.email !== email) {
+            handleUpdateUser({
+                name: name,
+                email: email
+            });
+        }
         setIsNameTouched(false);
         setIsEmailTouched(false);
     };
 
     const isButtonDisabled =
-        name.trim() === '' ||
-        email.trim() === '' ||
-        !isEmailValid || !isNameValid ||
-        name.length < 5 || name.length > 35 ||
-        email.length < 10 || email.length > 50 ||
-        currentUser.name === name ||
-        currentUser.email === email
+        (!isNameValid || !isEmailValid) ||
+        (
+            (isNameTouched || isEmailTouched) &&
+            (name.trim() === '' || name.length < 5 || name.length > 35 || email.trim() === '' || email.length < 10 || email.length > 50)
+        ) ||
+        (currentUser.name === name && currentUser.email === email);
 
     const handleClickInputProfile = () => {
         setOnInput(true);
+        setName(currentUser.name);
+        setEmail(currentUser.email);
         setErrorTextProfile('');
     }
 
@@ -66,7 +69,7 @@ function Profile({handleUpdateUser, errorTextProfile, popupTooltipOpen, setPopup
                 <ul className="profile__block-info">
                     <li className="profile__name">
                         <span className="profile__text">Имя</span>
-                        <span className="profile__text">{currentUser.name}</span>
+                        <span className="profile__text profile__text_name">{currentUser.name}</span>
                     </li>
                     <li className="profile__line">
                         <div className="promo">
@@ -75,7 +78,7 @@ function Profile({handleUpdateUser, errorTextProfile, popupTooltipOpen, setPopup
                     </li>
                     <li className="profile__text-info">
                         <span className="profile__text">E-mail</span>
-                        <span className="profile__text">{currentUser.email}</span>
+                        <span className="profile__text profile__text_email">{currentUser.email}</span>
                     </li>
                     <div className="profile__block-edit-out">
                         <button className="profile__link-edit-profile" onClick={handleClickInputProfile}>Редактировать
@@ -94,6 +97,7 @@ function Profile({handleUpdateUser, errorTextProfile, popupTooltipOpen, setPopup
                                     className="register__input register__input_profile"
                                     required
                                     onChange={handleNameChange}
+                                    value={name}
                                 />
                                 {isNameTouched && name.trim() === ''
                                     ?
@@ -126,6 +130,7 @@ function Profile({handleUpdateUser, errorTextProfile, popupTooltipOpen, setPopup
                                     className="register__input register__input_profile"
                                     required
                                     onChange={handleEmailChange}
+                                    value={email}
                                 />
                                 {
                                     isEmailTouched && email.trim() === ''

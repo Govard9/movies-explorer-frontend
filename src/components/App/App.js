@@ -72,6 +72,11 @@ function App() {
         setAllMovies([]);
         setMovies([]);
         setSaveMovies([]);
+        setErrorMovies('');
+        setIsFirstRender('');
+        setErrorTextAuth('');
+        setErrorTextReg('');
+        setErrorTextProfile('');
         navigate('/');
     }
 
