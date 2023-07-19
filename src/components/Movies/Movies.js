@@ -21,9 +21,11 @@ function Movies({
                     handleClickDeleteFilm
 }) {
 
+    const [filterMovies, setFilterMovies] = useState(localStorage.getItem("filteredMovies") || '[]');
+
     useEffect(() => {
         // При монтировании компонента извлекаем данные из локального хранилища
-        const savedMovies = localStorage.getItem("filteredMovies");
+        const savedMovies = filterMovies || localStorage.getItem("filteredMovies");
         const savedSearchFilm = localStorage.getItem("searchFilm");
         const savedToggle = localStorage.getItem("toggle");
 
@@ -33,10 +35,8 @@ function Movies({
             const parsedToggle = JSON.parse(savedToggle);
 
             // Обновляем состояния компонента
-            requestAnimationFrame(() => {
-                setMovies(parsedMovies);
-                handleUpdateSearchAllMovies({ film: savedSearchFilm, toggle: parsedToggle });
-            });
+            setMovies(parsedMovies);
+            handleUpdateSearchAllMovies({ film: savedSearchFilm, toggle: parsedToggle });
         }
     }, []);
 
@@ -44,19 +44,40 @@ function Movies({
         setIsLoading(true);
         setTimeout(() => {
             if (results.toggle) {
-                const filteredMovies = allMovies.filter((mov) =>
-                    (mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40) ||
-                    (mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40)
-                );
-                setMovies(filteredMovies);
+                const dataFilter = JSON.parse(filterMovies);
+                if (allMovies.length > 0) {
+                    const filteredMovies = allMovies.filter((mov) =>
+                        (mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40) ||
+                        (mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40)
+                    );
+                    setMovies(filteredMovies);
+                    localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+                } else if (allMovies.length <= 0) {
+                    const filteredMovies = dataFilter.filter((mov) =>
+                        (mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40) ||
+                        (mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40)
+                    );
+                    setMovies(filteredMovies);
+                    localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+                }
                 setIsFirstRender('Ничего не найдено.');
             } else {
-                const filteredMovies = allMovies.filter((mov) =>
-                    mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
-                    mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
-                );
-                setMovies(filteredMovies);
-                localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+                const dataFilter = JSON.parse(filterMovies);
+                if (allMovies.length > 0) {
+                    const filteredMovies = allMovies.filter((mov) =>
+                        mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
+                        mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
+                    );
+                    setMovies(filteredMovies);
+                    localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+                } else if (allMovies.length <= 0) {
+                    const filteredMovies = dataFilter.filter((mov) =>
+                        mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
+                        mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
+                    );
+                    setMovies(filteredMovies);
+                    localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+                }
                 setIsFirstRender('Ничего не найдено.');
             }
             setIsLoading(false);
