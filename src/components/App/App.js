@@ -1,5 +1,5 @@
 import './App.css';
-import {Route, Routes, useNavigate, useLocation} from "react-router-dom";
+import {Route, Routes, Navigate, useNavigate, useLocation} from "react-router-dom";
 import Main from '../Main/Main';
 import Error404 from '../404/Error404';
 import Movies from '../Movies/Movies';
@@ -192,17 +192,9 @@ function App() {
 
             <Routes>
 
-                <Route path="/signin" element={
-                    <Login
-                        onAuthorization={onAuthorization}
-                        errorTextAuth={errorTextAuth}
-                    />}/>
+                <Route path="/signin" element={loggedIn ? <Navigate to="/" /> : <Login onAuthorization={onAuthorization} errorTextAuth={errorTextAuth} />} />
+                <Route path="/signup" element={loggedIn ? <Navigate to="/" /> : <Register onRegister={onRegister} errorTextReg={errorTextReg} />} />
 
-                <Route path="/signup" element={
-                    <Register
-                        onRegister={onRegister}
-                        errorTextReg={errorTextReg}
-                    />}/>
 
                 <Route path="/" element={<Main/>}/>
 
