@@ -25,17 +25,14 @@ function Movies({
 
     useEffect(() => {
         // При монтировании компонента извлекаем данные из локального хранилища
-        const savedMovies = filterMovies || localStorage.getItem("filteredMovies");
         const savedSearchFilm = localStorage.getItem("searchFilm");
         const savedToggle = localStorage.getItem("toggle");
 
         // Проверяем, есть ли сохраненные данные в локальном хранилище
-        if (savedMovies && savedSearchFilm && savedToggle) {
-            const parsedMovies = JSON.parse(savedMovies);
+        if (savedSearchFilm && savedToggle) {
             const parsedToggle = JSON.parse(savedToggle);
 
             // Обновляем состояния компонента
-            setMovies(parsedMovies);
             handleUpdateSearchAllMovies({ film: savedSearchFilm, toggle: parsedToggle });
         }
     }, []);
