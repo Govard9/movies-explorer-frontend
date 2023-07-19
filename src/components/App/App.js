@@ -32,6 +32,7 @@ function App() {
     const [errorTextAuth, setErrorTextAuth] = useState('');
     const [errorTextReg, setErrorTextReg] = useState('');
     const [errorTextProfile, setErrorTextProfile] = useState('');
+    const [savedFilmId, setSavedFilmId] = useState('');
 
     const [popupTooltipOpen, setPopupTooltipOpen] = useState(false);
 
@@ -77,6 +78,7 @@ function App() {
         setErrorTextAuth('');
         setErrorTextReg('');
         setErrorTextProfile('');
+        setSavedFilmId('');
         navigate('/');
     }
 
@@ -168,6 +170,7 @@ function App() {
         mainApi.deleteFilm(movieId)
             .then((res) => {
                 setSaveMovies((state) => state.filter((item) => item._id !== movieId));
+                setSavedFilmId(movieId);
             })
             .catch((error) => {
                 console.log(error);
@@ -241,6 +244,8 @@ function App() {
                             isRenderSavedFilms={isRenderSavedFilms}
                             setIsRenderSavedFilms={setIsRenderSavedFilms}
                             allMovies={allMovies}
+                            savedFilmId={savedFilmId}
+
                         />
                     }
                 />

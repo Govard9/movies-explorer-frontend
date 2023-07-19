@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import search_image from '../../../images/icon/search-form__search-image.svg';
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
 
@@ -7,6 +7,14 @@ function SearchForm({ onUpdateMovies, onUpdateMoviesSaved, movies, savedMode }) 
     const [resultSearch, setResultSearch] = useState(() => localStorage.getItem('searchFilm') || '')
     const [error, setError] = useState('');
     const [toggle, setToggle] = useState(JSON.parse(localStorage.getItem('toggle')) || false);
+
+    useEffect(() => {
+        if (savedMode) {
+            // Если находимся на странице сохраненных фильмов, сбрасываем инпут и переключатель
+            setResultSearch('');
+            setToggle(false);
+        }
+    }, [savedMode]);
 
     function handleSearchValue(e) {
         setResultSearch(e.target.value);

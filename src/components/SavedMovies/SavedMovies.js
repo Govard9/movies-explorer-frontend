@@ -3,7 +3,6 @@ import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
 import Preloader from "../Movies/Preloader/Preloader";
-import mainApi from "../../utils/MainApi";
 
 function SavedMovies({
                          errorMovies,
@@ -11,34 +10,45 @@ function SavedMovies({
                          setIsFirstRender,
                          savedMode,
                          saveMovies,
-                         handleClickDeleteFilm,
                          isRenderSavedFilms,
                          setIsRenderSavedFilms,
-                         allMovies
+                         allMovies,
+                         handleClickDeleteFilm,
+                         savedFilmId
 }) {
 
     const [filterSavedMovies, setFilterSavedMovies] = useState([]);
 
     const [isLoading, setIsLoading] = useState(false);
 
+    useEffect(() => {
+        setFilterSavedMovies([...saveMovies]);
+    }, [saveMovies]);
+
+    useEffect(() => {
+        // Функция для удаления фильма из filterSavedMovies
+        const updatedFilterMovies = filterSavedMovies.filter((mov) => mov._id !== savedFilmId);
+        setFilterSavedMovies(updatedFilterMovies);
+    }, [saveMovies])
+
     const handleUpdateSearchSavedMovies = (results) => {
         setIsLoading(true);
         setTimeout(() => {
             if (results.toggle) {
-                const filteredMovies = saveMovies.filter((mov) =>
+                const filteredMovies = saveMovies.reverse().filter((mov) =>
                     mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40 ||
                     mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40
                 );
+                setFilterSavedMovies(filteredMovies.reverse());
                 setIsRenderSavedFilms(false);
-                setFilterSavedMovies(filteredMovies)
                 setIsFirstRender('Ничего не найдено.');
             } else {
-                const filteredMovies = saveMovies.filter((mov) =>
+                const filteredMovies = saveMovies.reverse().filter((mov) =>
                     mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
                     mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
                 );
+                setFilterSavedMovies(filteredMovies.reverse());
                 setIsRenderSavedFilms(false);
-                setFilterSavedMovies(filteredMovies)
                 setIsFirstRender('Ничего не найдено.');
             }
 

@@ -15,7 +15,6 @@ function MoviesCard({
                         saveMovies
                     }) {
 
-    console.log(movies)
     const [savedMoviesIds, setSavedMoviesIds] = useState([]);
 
     useEffect(() => {
