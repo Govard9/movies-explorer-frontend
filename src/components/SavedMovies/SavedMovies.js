@@ -39,7 +39,7 @@ function SavedMovies({
         setIsLoading(true);
         setTimeout(() => {
             if (results.toggle) {
-                const filteredMovies = saveMovies.filter((mov) =>
+                const filteredMovies = saveMovies.reverse().filter((mov) =>
                     mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40 ||
                     mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40
                 );
@@ -47,7 +47,7 @@ function SavedMovies({
                 setIsRenderSavedFilms(false);
                 setIsFirstRender('Ничего не найдено.');
             } else {
-                const filteredMovies = saveMovies.filter((mov) =>
+                const filteredMovies = saveMovies.reverse().filter((mov) =>
                     mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
                     mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
                 );
