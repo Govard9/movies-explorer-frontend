@@ -22,20 +22,24 @@ function SavedMovies({
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        setFilterSavedMovies([...saveMovies]);
+        setFilterSavedMovies(saveMovies);
     }, [saveMovies]);
 
     useEffect(() => {
         // Функция для удаления фильма из filterSavedMovies
         const updatedFilterMovies = filterSavedMovies.filter((mov) => mov._id !== savedFilmId);
         setFilterSavedMovies(updatedFilterMovies);
-    }, [saveMovies])
+    }, [saveMovies, savedFilmId]);
+
+    useEffect(() => {
+        saveMovies.length > 0 && handleUpdateSearchSavedMovies({ toggle: false, film: '' });
+    }, []);
 
     const handleUpdateSearchSavedMovies = (results) => {
         setIsLoading(true);
         setTimeout(() => {
             if (results.toggle) {
-                const filteredMovies = saveMovies.reverse().filter((mov) =>
+                const filteredMovies = saveMovies.filter((mov) =>
                     mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40 ||
                     mov.nameEN.toLowerCase().includes(results.film.toLowerCase()) && mov.duration <= 40
                 );
@@ -43,7 +47,7 @@ function SavedMovies({
                 setIsRenderSavedFilms(false);
                 setIsFirstRender('Ничего не найдено.');
             } else {
-                const filteredMovies = saveMovies.reverse().filter((mov) =>
+                const filteredMovies = saveMovies.filter((mov) =>
                     mov.nameRU.toLowerCase().includes(results.film.toLowerCase()) ||
                     mov.nameEN.toLowerCase().includes(results.film.toLowerCase())
                 );
