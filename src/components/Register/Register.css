@@ -66,7 +66,7 @@
 .register__input_profile {
     width: 122px;
     height: 14px;
-    padding: 0;
+    padding: 0 5px 0 0;
     text-align: right;
     font-size: 11px;
     border: 1px solid #424242;
@@ -76,13 +76,35 @@
     color: #EE3465;
 }
 
+.register__input_pass-white {
+    color: #FFFFFF;
+}
+
 .register__span-validation {
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
     line-height: 12px;
     color: #EE3465;
-    padding: 6px 0 65px 0;
+    padding: 6px 0 0 0;
+}
+
+.register__span-validation_profile-name {
+    padding: 0 0 10px 0;
+}
+
+.register__span-validation_profile-email {
+    padding: 10px 0 0 0;
+}
+
+.register__span-validation_button {
+    margin: 135px 0 10px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.register__span-validation_margin-none {
+    margin: 0 0 10px 0;
 }
 
 .register__button {
@@ -97,7 +119,6 @@
     line-height: 17px;
     color: #FFFFFF;
     cursor: pointer;
-    margin-top: 70px;
     opacity: 1;
     transition: .3s ease;
 }
@@ -109,6 +130,7 @@
 .register__button_disabled {
     color: #C2C2C2;
     background: #F8F8F8;
+    opacity: .8;
 }
 
 .register__button:hover {
@@ -119,7 +141,7 @@
 .register__login-block {
     display: flex;
     justify-content: center;
-    padding: 16px 0 70px 0;
+    padding: 16px 0 0 0;
 }
 
 .register__text {

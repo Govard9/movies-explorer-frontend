@@ -12,19 +12,20 @@
 
 .search-form__form {
     width: 1140px;
-    height: 46px;
     position: relative;
     display: flex;
+    flex-direction: column;
 }
 
 .search-form__input {
+    box-sizing: border-box;
     width: 100%;
-    height: 100%;
+    height: 46px;
     background: #2F2F2F;
     border-radius: 40px;
     border: 0;
-    padding-left: 22px;
     color: #FFFFFF;
+    padding: 0 0 0 22px;
 }
 
 .search-form__input::placeholder {
@@ -33,6 +34,15 @@
     font-size: 13px;
     line-height: 17px;
     color: #8B8B8B;
+}
+
+.search-form__validate {
+    color: #FF004C;
+    margin: 5px 0 0 5px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 17px;
 }
 
 .search-form__button {

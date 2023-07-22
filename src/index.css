@@ -81,3 +81,6 @@ a:hover {
 
 /* 404 */
 @import url(./components/404/Error404.css);
+
+/* InfoTooltip */
+@import url(./components/InfoTooltip/InfoTooltip.css);

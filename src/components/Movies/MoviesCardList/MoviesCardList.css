@@ -10,6 +10,10 @@
     padding: 50px 0 80px 0;
 }
 
+.cards__block-more_inactive {
+    display: none;
+}
+
 .cards__button {
     width: 320px;
     height: 36px;
